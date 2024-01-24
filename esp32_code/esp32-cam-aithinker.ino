@@ -82,8 +82,7 @@
 // Frames rates for different configurations
 // ###########################################
 
-// For 240 iterations measured on the track face code. Note the code was run at night, seemingly making it faster,
-// maybe for the scene being less complex in terms of colors?
+// For 240 iterations measured on the track face code.
 
 // config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
 // config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
