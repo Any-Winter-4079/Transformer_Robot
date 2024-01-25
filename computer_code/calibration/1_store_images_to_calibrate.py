@@ -1,8 +1,8 @@
+import os
 import cv2
 import threading
 import numpy as np
 import urllib.request
-import os
 from datetime import datetime
 
 #################
@@ -20,8 +20,7 @@ from datetime import datetime
 
 # 1. Print a chessboard pattern and stick it on a flat surface.
 #    It's recommended you take the chessboard from OpenCV's website,
-#    as the number of rows and columns need to be specified for calibration,
-#    and they are not be very intuitive (9x6 but 10x7 squares)
+#    as the number of inner corners are already specified (9x6 in 10x7 squares)
 #    https://github.com/opencv/opencv/blob/4.x/doc/pattern.png
 # 2. When you run this script, you should hold the chessboard in different positions
 #    so that the cameras can capture it from different angles. You should see
