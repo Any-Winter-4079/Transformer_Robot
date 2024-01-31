@@ -6,8 +6,8 @@
 // ###########################################
 // sendJpg() function and ESPAsyncWebServer
 // ###########################################
-
-// AsyncWebServer increases the fps rate from 1 up to >16fps 
+// AsyncWebServer increases the fps rate in the best case scenario
+// from 1 to 37 fps (with 320x240 resolution and quality 63).
 // Still, I had to take sendJpg() from the the following gist
 // (together with AsyncBufferResponse and AsyncFrameResponse)
 // in order to overcome stability issues (like frames reconstructed
@@ -18,13 +18,12 @@
 // ###########################################
 // Libraries outside of Arduino IDE
 // ###########################################
-
-// Libraries:
+// Place the following libraries:
 // https://github.com/espressif/esp32-camera
 // https://github.com/me-no-dev/AsyncTCP
 // https://github.com/me-no-dev/ESPAsyncWebServer
 
-// Folders:
+// In the following -or equivalent- folders:
 // Users/me/Documents/Arduino/libraries/esp32-camera-master
 // Users/me/Documents/Arduino/libraries/AsyncTCP
 // Users/me/Documents/Arduino/libraries/ESPAsyncWebServer-master
@@ -32,32 +31,32 @@
 // ###########################################
 // Connectivity
 // ###########################################
-
 // Since uploading code to the ESP32 can be a bit of a hassle,
 // we add a fallback network in case the primary network is not available.
 // The networks are the home WiFi and the iPhone hotspot. More networks can be added.
 // The home WiFi may provide a faster speed than the iPhone hotspot.
 
 // If you want to connect computer, iPhone, and robot to same network (instead of using the home WiFi):
-// 1. Turn on iPhone hotspot
-// 2. Turn on Maximize compatibility
-// 3. Turn robot on (wait for it to connect to hotspot)
+// 1. Turn the iPhone hotspot on
+// 2. Turn Maximize compatibility on
+// 3. Turn the robot on (wait for it to connect to hotspot)
 // 4. Connect computer to hotspot
-// 5. (If the cameras still work) Turn off Maximize compatibility (faster frame rate)
+// 5. (If the cameras still work) Turn Maximize compatibility off (for a potentially faster frame rate)
 
 // ###########################################
 // If you face issues
 // ###########################################
-
 // Lots of issues and threads point to the clock being exposed on some pin,
 // antenna issues where the signal is too weak or experiences interference,
 // problems if the average compression rate (e.g. with a complex scene)
 // cannot be met, and so on.
 // For example, on the FreeNove camera I have tested how covering it with
-// the plastic bag it came in increased the fps (as others reported)
+// the plastic bag it came in increased the fps (as others reported).
+// In the end, I ended up using the Ai-Thinker and the M5Stack Wide cameras
+// and left the FreeNove camera to handle mostly audio.
 
-// Lowering the clock frequency for the camera might help too, as others
-// have suggested.
+// Lowering the clock frequency for the camera might help too, as others have
+// suggested. It'll update a bit slower, but the clock signal may be more robust.
 
 // https://www.youtube.com/watch?v=NvmyCBbTGPs
 // https://github.com/espressif/esp32-camera/issues/150
@@ -65,221 +64,22 @@
 // ###########################################
 // Frames rates for different configurations
 // ###########################################
+// Performing a synchronous fetch of 1k images for each of the following 30
+// (FRAME_SIZE, JPEG_QUALITY) combinations (using update_camera_config.py
+// as test script), we observe latencies from 0.030 to 0.618 seconds.
 
-// For 240 iterations measured on the track face code:
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_WHEN_EMPTY; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1496s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 2;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_WHEN_EMPTY; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1484s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1707s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 2;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1687s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 16000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.2052s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 8000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_WHEN_EMPTY; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.3266s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 8000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.2397s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 24; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1329s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 32; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1045s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 32; // 0-63 lower number means higher quality
-// config.fb_count = 2;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1176s
-
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 32; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 12000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1490s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_VGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 12000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.2018s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_SVGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 12000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.2408s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_SVGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1766s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_SVGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 24; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1557s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_SVGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 24; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_WHEN_EMPTY; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.1556s
-
-// config.frame_size = FRAMESIZE_UXGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 24; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_WHEN_EMPTY; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.4983s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_UXGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 24; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.4937s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_QVGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 24; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.0618s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_QVGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 12; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.0864s
-
-// config.pixel_format = PIXFORMAT_JPEG; // PIXFORMAT_JPEG seems recommended
-// config.frame_size = FRAMESIZE_QVGA;  // FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
-// config.jpeg_quality = 32; // 0-63 lower number means higher quality
-// config.fb_count = 1;
-// config.xclk_freq_hz = 20000000; //16000000 for the experimental mode. From 8 to 20 MHz seems to work reasonably well.
-// config.grab_mode = CAMERA_GRAB_LATEST; //CAMERA_GRAB_WHEN_EMPTY or CAMERA_GRAB_LATEST
-// config.fb_location = CAMERA_FB_IN_PSRAM;
-
-// Average fetch: 0.0809s
+// # | FRAME_SIZE      | JPEG_QUALITY 4 | JPEG_QUALITY 8 | JPEG_QUALITY 16 | JPEG_QUALITY 32 | JPEG_QUALITY 63 |
+// # |-----------------|----------------|----------------|-----------------|-----------------|-----------------|
+// # | QVGA (320x240)  | Err            | 0.045          | 0.035           | 0.032           | 0.030           |
+// # | VGA (640x480)   | 0.141          | 0.112          | 0.077           | 0.074           | 0.067           |
+// # | SVGA (800x600)  | 0.177          | 0.126          | 0.113           | 0.075           | 0.067           |
+// # | XGA (1024x768)  | 0.365          | 0.282          | 0.197           | 0.153           | 0.152           |
+// # | SXGA (1280x1024)| 0.491          | 0.335          | 0.248           | 0.183           | 0.166           |
+// # | UXGA (1600x1200)| 0.618          | 0.409          | 0.300           | 0.222           | 0.191           |
 
 // ###########################################
 // Observations
 // ###########################################
-
 // As quality, buffer count, frequency and grab mode change, image changes a bit too
 // (in noise, clarity, and so on). Not very dramatically, but it is noticeable.
 // Lower clock rates seem to provide a clearer image, as if there was more natural light.
@@ -287,12 +87,11 @@
 // ###########################################
 // ESP32-CAM configuration from computer
 // ###########################################
-
 // To allow for different configurations, given the different possible tasks the computer
 // may want to perform (object detection, face-tracking, etc.), we add a handler for
 // /camera_config that allows the computer to send the camera configuration to the ESP32-CAM.
 // This allows us to change the frame_size and quality without re-uploading the code.
-// Other configurations can be added.
+// Other configurations changes can be added.
 
 // WiFi credentials and IP configurations
 const char* ssid1 = "***";  //                                                          ** Replace **
