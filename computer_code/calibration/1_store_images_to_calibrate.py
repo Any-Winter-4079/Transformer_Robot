@@ -1,5 +1,6 @@
 import os
 import cv2
+import requests
 import threading
 import numpy as np
 import urllib.request
@@ -17,11 +18,12 @@ from datetime import datetime
 #################
 # Instructions  #
 #################
-
 # 1. Print a chessboard pattern and stick it on a flat surface.
-#    It's recommended you take the chessboard from OpenCV's website,
-#    as the number of inner corners are already specified (9x6 in 10x7 squares)
+#    You can take the chessboard from OpenCV's website, where the
+#    number of inner corners are already specified (9x6 in 10x7 squares)
 #    https://github.com/opencv/opencv/blob/4.x/doc/pattern.png
+#    Some people have suggested to use a chessboard with more inner corners
+#    to help with calibration, but I haven't tested it.
 # 2. When you run this script, you should hold the chessboard in different positions
 #    so that the cameras can capture it from different angles. You should see
 #    the chessboard pattern in both cameras' frames (in full) before accepting the pair
@@ -33,6 +35,13 @@ from datetime import datetime
 # If not enough images are left, you should refill the folder capturing from a shorter distance.
 # I saved ~40 image pairs to calibrate the cameras.
 
+# Note the calibration process is implemented in the next script.
+# What you can do here is set the desired:
+# - JPEG_QUALITY
+# - FRAME_SIZE
+# for the calibration of both cameras (which may be the same or different from
+# the intended values in production)
+
 #################
 # venv          #
 #################
@@ -40,20 +49,69 @@ from datetime import datetime
 # In my case: source ./tensorflow-metal-test/bin/activate (from v2 folder)
 
 #################
+# Alignment     #
+#################
+# Before storing the frames, you can open both ESP32-CAM's IPs in the browser
+# to check if the cameras are working properly. You can use a book in 
+# a fixed position to check if the cameras are aligned (e.g. the book's spine
+# has the same angle in both cameras' frames). In other words,
+# the cameras should not be rotated with respect to each other.
+
+#################
+# Height        #
+#################
+# Similarly, make sure the book's spine is at the same height in both cameras' frames.
+# In my case, I used a locking nut on the eye mechanism to ensure the cameras remain
+# fixed at the same height, given they had a tendency to move a bit when the servo
+# that drives the eye mechanism was turned on.
+
+# These steps should help the calibration process, so it is recommended you do them.
+# These checks can be performed at any time, too, even after calibration.
+
+#################
+# Quality       #
+#################
+# [Untested] If you plan on stitching the images together (creating a
+# panoramic view, as in human vision), a higher JPEG_QUALITY may help.
+
+#################
+# Size          #
+#################
+# Image size may also help with stitching. Note, though, the camera matrices may
+# need to be scaled down if used in production with a lower-resolution setting.
+
+#################
 # Configuration #
 #################
+JPEG_QUALITY = 12 # 0-63 lower means higher quality. I use 12 for production.
+FRAME_SIZE = "FRAMESIZE_VGA" # FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
+# I use VGA for production.
 USE_HOTSPOT = False
 
 ip_left = "*.*.*.*" if USE_HOTSPOT else "*.*.*.*"  # Left eye's IP, e.g. (192, 168, 1, 180).             ** Replace
 ip_right = "*.*.*.*" if USE_HOTSPOT else "*.*.*.*" # Right eye's IP, e.g. (192, 168, 1, 181).            ** Replace
+
 esp32_right_image_url = f"http://{ip_right}/image.jpg"
 esp32_left_image_url = f"http://{ip_left}/image.jpg"
+esp32_left_config_url = f"http://{ip_left}/camera_config"
+esp32_right_config_url = f"http://{ip_right}/camera_config"
 
 save_path_right = "./images/right_eye"
 save_path_left = "./images/left_eye"
 
 frame_interval = 3  # Time to wait between frames in seconds. You have this much time to press 's'
 num_images = 100  # Total number of image pairs to capture (of which some you may save)
+
+# Function to update the camera configuration
+def update_camera_config(esp32_config_url, jpeg_quality, frame_size):
+    """Send a request to update the camera configuration."""
+    data = {'jpeg_quality': jpeg_quality, 'frame_size': frame_size}
+    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+    try:
+        response = requests.post(esp32_config_url, data=data, headers=headers)
+        print(f"Response from ESP32: {response.text}")
+    except requests.RequestException as e:
+        print(f"Error sending request: {e}")
 
 # Function to handle the image fetching in a thread
 def fetch_image(url, queue):
@@ -110,6 +168,10 @@ def main():
     # Ensure the save directories exist
     os.makedirs(save_path_left, exist_ok=True)
     os.makedirs(save_path_right, exist_ok=True)
+
+    # Update the camera configurations
+    update_camera_config(esp32_left_config_url, JPEG_QUALITY, FRAME_SIZE)
+    update_camera_config(esp32_right_config_url, JPEG_QUALITY, FRAME_SIZE)
 
     # Capture images
     for i in range(num_images):
