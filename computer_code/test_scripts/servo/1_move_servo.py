@@ -16,6 +16,12 @@ import requests
 # In my case: source ./tensorflow-metal-test/bin/activate (from v2 folder)
 
 #################
+# Note          #
+#################
+# Make sure there is a sketch loaded to the Uno that can receive the angle
+# and move the servo accordingly (for example, production.ino).
+
+#################
 # Configuration #
 #################
 USE_HOTSPOT = False
