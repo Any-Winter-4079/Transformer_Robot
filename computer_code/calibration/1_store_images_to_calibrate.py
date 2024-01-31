@@ -88,8 +88,8 @@ FRAME_SIZE = "FRAMESIZE_VGA" # FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, 
 # I use VGA for production.
 USE_HOTSPOT = False
 
-ip_left = "*.*.*.*" if USE_HOTSPOT else "*.*.*.*"  # Left eye's IP, e.g. (192, 168, 1, 180).             ** Replace
-ip_right = "*.*.*.*" if USE_HOTSPOT else "*.*.*.*" # Right eye's IP, e.g. (192, 168, 1, 181).            ** Replace
+ip_left = "*.*.*.*" if USE_HOTSPOT else "*.*.*.*"  # Left eye's IP, e.g. (192, 168, 1, 180).             ** Replace **
+ip_right = "*.*.*.*" if USE_HOTSPOT else "*.*.*.*" # Right eye's IP, e.g. (192, 168, 1, 181).            ** Replace **
 
 esp32_right_image_url = f"http://{ip_right}/image.jpg"
 esp32_left_image_url = f"http://{ip_left}/image.jpg"
