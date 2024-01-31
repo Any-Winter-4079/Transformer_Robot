@@ -5,7 +5,7 @@ Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_
 
 | FRAME_SIZE      | JPEG_QUALITY 4 | JPEG_QUALITY 8 | JPEG_QUALITY 16 | JPEG_QUALITY 32 | JPEG_QUALITY 63 |
 |-----------------|----------------|----------------|-----------------|-----------------|-----------------|
-| QVGA (320x240)  | Err            | 0.055          | 0.035           | 0.032           | 0.030           |
+| QVGA (320x240)  | Err            | 0.045          | 0.035           | 0.032           | 0.030           |
 | VGA (640x480)   | 0.141          | 0.112          | 0.077           | 0.074           | 0.067           |
 | SVGA (800x600)  | 0.177          | 0.126          | 0.113           | 0.075           | 0.067           |
 | XGA (1024x768)  | 0.365          | 0.282          | 0.197           | 0.153           | 0.152           |
