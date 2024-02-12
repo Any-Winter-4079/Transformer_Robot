@@ -1,3 +1,8 @@
+## Connections
+
+![diag](https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/c7165e7e-c409-475d-85b3-c041165ebcb6)
+
+
 ## Average Fetch time
 Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_SIZE, JPEG_QUALITY) combinations (using [update_camera_config.py](https://github.com/Any-Winter-4079/GPT_Uno_Robot/blob/main/computer_code/test_scripts/camera/1_update_cam_config.py) as test script), latency varies from 0.027 (s) to 0.618 (s) -that is, from ~1.7 to 37 fps.
 
