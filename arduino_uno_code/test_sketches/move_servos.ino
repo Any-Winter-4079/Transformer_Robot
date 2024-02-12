@@ -1,25 +1,18 @@
 #include <Servo.h>
 
 #define UP_DOWN_SERVO_PIN 9
-#define LEFT_RIGHT_SERVO_PIN A0 // Use A0 as a digital pin
+#define LEFT_RIGHT_SERVO_PIN A0
 
-// Vertically, because of the ESP32-CAMs being connected to the eyes,
-// the SG-90 servos are constrained to a range of motion of [55, 130].
-// Noticeably, because both ESP32-CAMs are different (and have different heights),
-// we have more range of motion to look up than to look down. Going  <50 degrees
-// collides with an ESP32-CAM, but restricting to [50, 90] seems to be an
-// unnecessary constraint. Make sure to test the range of motion of your eyes
-// as your robot will probably have different constraints.
+// Your range of motion may differ, so you may need to replace these values
+// Up and down
 #define DOWN_ANGLE 50                   // ** Replace **
-#define UP_ANGLE 105                    // ** Replace **
-#define VERT_CENTER_ANGLE 70            // ** Replace **
+#define UP_ANGLE 110                    // ** Replace **
+#define VERT_CENTER_ANGLE 80            // ** Replace **
 
-// Horizontally, the SG-90 servos are constrained to a range of motion of [70, 130],
-// with 100 being the center. Make sure to test the range of motion of your eyes
-// as your robot will probably have different constraints.
-#define LEFT_ANGLE 130                  // ** Replace **
-#define RIGHT_ANGLE 70                  // ** Replace **
-#define HORIZ_CENTER_ANGLE 100          // ** Replace **
+// Left and right
+#define LEFT_ANGLE 120                  // ** Replace **
+#define RIGHT_ANGLE 60                  // ** Replace **
+#define HORIZ_CENTER_ANGLE 90           // ** Replace **
 
 #define DELAY_TIME 400 // 0.4 seconds
 #define NUM_ITERATIONS 3
