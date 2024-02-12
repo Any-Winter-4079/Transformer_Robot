@@ -70,6 +70,8 @@
 // the plastic bag it came in increased the fps (as others reported).
 // In the end, I ended up using the Ai-Thinker and the M5Stack Wide cameras
 // and left the FreeNove camera to handle mostly audio.
+// For the Ai-Thinker, leaving the antenna unosbstructed seemed to increase
+// the frame rate by quite a bit. So playing with the position is advised.
 
 // Lowering the clock frequency for the camera might help too, as others have
 // suggested. It'll update a bit slower, but the clock signal may be more robust.
