@@ -39,3 +39,9 @@ At this point, if desired, the operation of the motors can be tested by connecti
 <div align="center"><img width="400" alt="pulse-width-modulation" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/cc500e90-97dc-48b4-82a9-f4e15632581b">
   <p>Figure 6. Pulse-width modulation. By Thewrightstuff - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=72876123</p>
 </div>
+
+The result of the joining of both levels can be observed in Figure 7. Note that there is an additional connection to GND and 5V of the L298N (initially intended to power a camera) that can be ignored. Moreover, it is recommended to lubricate the free wheel if it does not spin easily, and ensure that it aligns with the direction of movement of the robot.
+<div align="center">
+  <img width="500" alt="robot 2 levels" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/f4a89014-68a4-4f08-a55c-9e027524565c">
+  <p>Figure 7. 2-level robot with Arduino Uno Rev3 and L298N on the upper level and 7.4V battery, 400-pin breadboard, wheels, and motors on the lower level.</p>
+</div>
