@@ -27,3 +27,15 @@ After this first phase, it is recommended to test the hardware components (for e
 <div align="center"><img width="500" alt="attach" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/18a8485e-dd92-484f-84cb-da1406c7e1e5">
   <p>Figure 5. Joining of Arduino Uno Rev3 and L298N to the top part of the second level of the chassis by M3 screws and connection of Uno to computer for uploading of the Blink.ino sketch.</p>
 </div>
+
+After testing the first components, it is suggested to install a battery - preferably rechargeable - and a breadboard to the top of the lower level of the chassis. In this case, Blue Tack is used for joining, to allow easy disassembly if necessary. It is important here that the battery charging connector (such as micro-USB B), and the breadboard pins are easily accessible, to facilitate charging tasks and connection of components to the power columns (+, -).
+
+After this, both levels of the chassis can be joined with hexagonal spacers and M3 cap screws - although, if a third level is needed, headless M3 screws would be required for joining to the second level, so that both ends can be screwed into a hexagonal spacer.
+
+Once both parts of the chassis are joined, it is suggested to connect the + and - cables of the motors to OUT1, OUT2 (right motor, from the robot's perspective) and OUT3, OUT4 (left motor) of the L298N, and power all components, connecting +, - of the 9V battery to one of the breadboard's power columns (+, -), where we connect our L298N and Arduino Uno. In the case of the L298N, note that, since the battery provides 9V, the +12V and GND input are used, while in the case of the Uno Rev3, the DC barrel jack is used, as using the 5V or 3.3V input would damage our component. For all connections, Dupont cables are used.
+
+At this point, if desired, the operation of the motors can be tested by connecting pins 8 and 7 of the Arduino Uno to IN1 and IN2 of the L298N (to control the direction of rotation, forward, backward or stop, of the right wheel) and pins 5 and 4 to IN3 and IN4 (to control the direction of rotation of the left wheel). Additionally, by connecting pins 6 and 3 (for pulse width modulation) of the Arduino Uno to ENA and ENB of the L298N, values from 0 to 255 can be written (on these pins 6 and 3 of the Arduino Uno), which the L298N will interpret in ENA and ENB as indicators of the speed at which the right and left motors should move, respectively, according to the duration of the pulses sent. This idea of PWM (pulse-width modulation), where information is not only sent by modifying the voltage (usually, 5V or 0V) but also the duration of the pulses sent (which ultimately modifies the average voltage received), can be observed in Figure 6.
+
+<div align="center"><img width="400" alt="pulse-width-modulation" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/cc500e90-97dc-48b4-82a9-f4e15632581b">
+  <p>Figure 6. Pulse-width modulation. By Thewrightstuff - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=72876123</p>
+</div>
