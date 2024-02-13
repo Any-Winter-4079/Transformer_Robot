@@ -15,10 +15,11 @@ The robot's diagram includes the following considerations:
 ![diag](https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/c7165e7e-c409-475d-85b3-c041165ebcb6)
 
 
-## Average Fetch time
+## Performance
 Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_SIZE, JPEG_QUALITY) combinations (using [update_camera_config.py](https://github.com/Any-Winter-4079/GPT_Uno_Robot/blob/main/computer_code/test_scripts/camera/1_update_cam_config.py) as test script), latency varies from 0.027 (s) to 0.618 (s) -that is, from ~1.7 to 37 fps.
 
-### M5Stack Wide Camera
+### Average Fetch time
+#### M5Stack Wide Camera
 
 | FRAME_SIZE      | JPEG_QUALITY 4 | JPEG_QUALITY 8 | JPEG_QUALITY 16 | JPEG_QUALITY 32 | JPEG_QUALITY 63 |
 |-----------------|----------------|----------------|-----------------|-----------------|-----------------|
@@ -31,7 +32,7 @@ Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_
 
 <div align="center"><img width="550" alt="Screenshot 2024-01-31 at 21 09 34" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/77a86c6f-5b5e-4b12-bd2f-3ed7c434cd9c"></div>
 
-### Ai-Thinker Camera
+#### Ai-Thinker Camera
 
 | FRAME_SIZE      | JPEG_QUALITY 4 | JPEG_QUALITY 8 | JPEG_QUALITY 16 | JPEG_QUALITY 32 | JPEG_QUALITY 63 |
 |-----------------|----------------|----------------|-----------------|-----------------|-----------------|
