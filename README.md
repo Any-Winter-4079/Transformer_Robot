@@ -1,3 +1,11 @@
+## Capabilities
+Vision, Hearing, Speech, Cognition
+<div align="center">
+  <img height="500" alt="eye mech 1" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/678b0ee7-fdbe-418b-90df-854e576ecc4d">
+  <img height="500" alt="eye mech 2" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/7e6525a7-50bd-41b7-9738-9bbb42369602">
+
+</div>
+
 ## Instructions
 For instructions on how to build the robot, go to the instructions [folder](https://github.com/Any-Winter-4079/Transformer_Robot/blob/main/instructions/).
 <div align="center"><img height="200" alt="sand" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/88e6fb66-df09-4e92-b135-296c45c97aa8">
