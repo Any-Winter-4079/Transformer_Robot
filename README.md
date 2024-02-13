@@ -1,3 +1,10 @@
+## Instructions
+For instructions on how to build the robot, go to the instructions [folder](https://github.com/Any-Winter-4079/Transformer_Robot/blob/main/instructions/).
+<div align="center"><img height="200" alt="sand" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/88e6fb66-df09-4e92-b135-296c45c97aa8">
+  <img height="200" alt="attach" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/aad43708-4f91-4dc9-be15-a2550c48b029">
+</div>
+
+
 ## Connections
 The robot's diagram includes the following considerations:
 
@@ -22,7 +29,7 @@ Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_
 | SXGA (1280x1024)| 0.491          | 0.335          | 0.248           | 0.183           | 0.166           |
 | UXGA (1600x1200)| 0.618          | 0.409          | 0.300           | 0.222           | 0.191           |
 
-<div align="center"><img width="700" alt="Screenshot 2024-01-31 at 21 09 34" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/77a86c6f-5b5e-4b12-bd2f-3ed7c434cd9c"></div>
+<div align="center"><img width="550" alt="Screenshot 2024-01-31 at 21 09 34" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/77a86c6f-5b5e-4b12-bd2f-3ed7c434cd9c"></div>
 
 ### Ai-Thinker Camera
 
@@ -35,5 +42,5 @@ Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_
 | SXGA (1280x1024)| 0.374          | 0.258          | 0.212           | 0.173           | 0.155           |
 | UXGA (1600x1200)| 0.503          | 0.307          | 0.218           | 0.221           | 0.194           |
 
-<div align="center"><img width="700" alt="Screenshot 2024-01-31 at 21 10 05" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/f1406ccf-bfca-4ed6-a7de-8df5745dcf23"></div>
+<div align="center"><img width="550" alt="Screenshot 2024-01-31 at 21 10 05" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/f1406ccf-bfca-4ed6-a7de-8df5745dcf23"></div>
 
