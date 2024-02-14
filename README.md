@@ -24,9 +24,11 @@ The robot's diagram includes the following considerations:
 
 
 ## Performance
-Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_SIZE, JPEG_QUALITY) combinations (using [update_camera_config.py](https://github.com/Any-Winter-4079/GPT_Uno_Robot/blob/main/computer_code/test_scripts/camera/1_update_cam_config.py) as test script), latency varies from 0.027 (s) to 0.618 (s) -that is, from ~1.7 to 37 fps.
 
 ### Average Fetch time
+
+Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_SIZE, JPEG_QUALITY) combinations (using [update_camera_config.py](https://github.com/Any-Winter-4079/GPT_Uno_Robot/blob/main/computer_code/test_scripts/camera/1_update_cam_config.py) as test script), latency varies from 0.027 (s) to 0.618 (s) -that is, from ~1.7 to 37 fps. For more information, go to [camera_latency](https://github.com/Any-Winter-4079/Transformer_Robot/blob/main/instructions/4_camera_latency.md).
+
 #### M5Stack Wide Camera
 
 | FRAME_SIZE      | JPEG_QUALITY 4 | JPEG_QUALITY 8 | JPEG_QUALITY 16 | JPEG_QUALITY 32 | JPEG_QUALITY 63 |
@@ -38,8 +40,12 @@ Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_
 | SXGA (1280x1024)| 0.491          | 0.335          | 0.248           | 0.183           | 0.166           |
 | UXGA (1600x1200)| 0.618          | 0.409          | 0.300           | 0.222           | 0.191           |
 
+<div align="center">
+  <p>Table 1. Average fetch time for 1000 iterations in 30 ESP32-CAM configurations of the M5Stack Wide model (in seconds).</p>
+</div>
+
 <div align="center"><img width="550" alt="Screenshot 2024-01-31 at 21 09 34" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/77a86c6f-5b5e-4b12-bd2f-3ed7c434cd9c">
-<p>Average fetch time for 1000 iterations in 30 ESP32-CAM configurations of the M5Stack Wide model (in seconds).</p></div>
+<p>Figure 1. Average fetch time for 1000 iterations in 30 ESP32-CAM configurations of the M5Stack Wide model (in seconds).</p></div>
 
 #### Ai-Thinker Camera
 
@@ -52,6 +58,10 @@ Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_
 | SXGA (1280x1024)| 0.374          | 0.258          | 0.212           | 0.173           | 0.155           |
 | UXGA (1600x1200)| 0.503          | 0.307          | 0.218           | 0.221           | 0.194           |
 
+<div align="center">
+  <p>Table 2. Average fetch time for 1000 iterations in 30 ESP32-CAM configurations of the Ai-Thinker model (in seconds).</p>
+</div>
+
 <div align="center"><img width="550" alt="Screenshot 2024-01-31 at 21 10 05" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/f1406ccf-bfca-4ed6-a7de-8df5745dcf23">
-<p>Average fetch time for 1000 iterations in 30 ESP32-CAM configurations of the Ai-Thinker model (in seconds).</p>
+<p>Figure 2 Average fetch time for 1000 iterations in 30 ESP32-CAM configurations of the Ai-Thinker model (in seconds).</p>
 </div>
