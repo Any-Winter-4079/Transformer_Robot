@@ -34,6 +34,13 @@ Observing the results (Table 1 for M5Stack Wide and Table 2 for Ai-Thinker), it 
 
 It is important to highlight that the configuration sent to /camera_config of each ESP32-CAM is only valid until the next time a (re)boot is performed, at which point the default configuration recorded in the module is loaded (potentially, another size and/or quality of frame), so, in the event of an unexpected crash and despite the camera reinitializing and returning to operate normally, the size and quality may not be the desired ones, which is why, after a timeout where the camera is not able to deliver a frame, it is recommended, once the flow of frames is recovered, to send the configuration to /camera_config again.
 
-<div align="center"><img width="550" alt="Screenshot 2024-01-31 at 21 09 34" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/77a86c6f-5b5e-4b12-bd2f-3ed7c434cd9c"></div>
+The script to update the frame size and quality, and obtain the average fetch times, can be seen on [Github](https://github.com/Any-Winter-4079/Transformer_Robot/blob/main/computer_code/test_scripts/camera/1_update_cam_config.py).
 
-<div align="center"><img width="550" alt="Screenshot 2024-01-31 at 21 10 05" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/f1406ccf-bfca-4ed6-a7de-8df5745dcf23"></div>
+Graphically, and although the results must be taken with caution, since it is a single run per configuration (of 1000 iterations, but a single execution, so a momentary slowdown of the frame rate can significantly affect the average time), and different scenes can also lead to variations in these fps, they are presented in Figure 1 and Figure 2.
+
+<div align="center"><img width="550" alt="Screenshot 2024-01-31 at 21 09 34" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/77a86c6f-5b5e-4b12-bd2f-3ed7c434cd9c">
+<p>Figure 1. Average fetch time for 1000 iterations in 30 ESP32-CAM configurations of the M5Stack Wide model (in seconds).</p></div>
+
+<div align="center"><img width="550" alt="Screenshot 2024-01-31 at 21 10 05" src="https://github.com/Any-Winter-4079/GPT_Uno_Robot/assets/50542132/f1406ccf-bfca-4ed6-a7de-8df5745dcf23">
+<p>Figure 2. Average fetch time for 1000 iterations in 30 ESP32-CAM configurations of the Ai-Thinker model (in seconds).</p>
+</div>
