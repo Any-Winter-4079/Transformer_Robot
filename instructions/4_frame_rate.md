@@ -4,7 +4,7 @@ Note that, for this reason, it is decided to include /camera_config in the ESP32
 
 As a first step, and to get an idea of the maximum possible performance by the ESP32-CAMs, the following study is carried out, requesting (synchronously) a total of 1,000 frames for each of the following 30 combinations of size and quality, and calculating their average fetch time.
 
-Observing the results (Table 1 for M5Stack Wide and Table 2 for Ai-Thinker), it can be seen how latency varies from 0.027 to 0.618 seconds—i.e., from ~1.7 to 37 fps.
+Observing the results (Table 1 for M5Stack Wide and Table 2 for Ai-Thinker), it can be seen how fech time varies from 0.027 to 0.618 seconds—i.e., from ~1.7 to 37 fps.
 
 | FRAME_SIZE      | JPEG_QUALITY 4 | JPEG_QUALITY 8 | JPEG_QUALITY 16 | JPEG_QUALITY 32 | JPEG_QUALITY 63 |
 |-----------------|----------------|----------------|-----------------|-----------------|-----------------|
