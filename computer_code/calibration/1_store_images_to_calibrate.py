@@ -83,7 +83,7 @@ from datetime import datetime
 #################
 # Configuration #
 #################
-JPEG_QUALITY = 12 # 0-63 lower means higher quality. I use 12 for production.
+JPEG_QUALITY = 4 # 0-63 lower means higher quality. I use 12 for production.
 FRAME_SIZE = "FRAMESIZE_VGA" # FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
 # I use VGA for production.
 USE_HOTSPOT = False
