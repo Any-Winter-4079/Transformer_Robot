@@ -27,7 +27,7 @@ The robot's diagram includes the following considerations:
 
 ### Average Fetch time
 
-Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_SIZE, JPEG_QUALITY) combinations (using [update_camera_config.py](https://github.com/Any-Winter-4079/GPT_Uno_Robot/blob/main/computer_code/test_scripts/camera/1_update_cam_config.py) as test script), latency varies from 0.027 (s) to 0.618 (s) -that is, from ~1.7 to 37 fps. For more information, go to [camera_latency](https://github.com/Any-Winter-4079/Transformer_Robot/blob/main/instructions/4_camera_latency.md).
+Performing a synchronous fetch of 1k images for each of the following 30 (FRAME_SIZE, JPEG_QUALITY) combinations (using [update_camera_config.py](https://github.com/Any-Winter-4079/GPT_Uno_Robot/blob/main/computer_code/test_scripts/camera/1_update_cam_config.py) as test script), fetch time varies from 0.027 (s) to 0.618 (s) -that is, from ~1.7 to 37 fps. For more information, go to [frame_rate](https://github.com/Any-Winter-4079/Transformer_Robot/blob/main/instructions/4_frame_rate.md).
 
 #### M5Stack Wide Camera
 
