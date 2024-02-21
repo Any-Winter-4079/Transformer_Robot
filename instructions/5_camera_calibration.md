@@ -11,7 +11,7 @@ Therefore, it's recommended to calibrate both cameras to eliminate this distorti
 
 Note that any pair of frames where the pattern's corners (or the lines connecting them) are not recognized should be discarded (with a new calibration run afterwards). An example of incorrect detection is shown in Figure 2. It's also important to experiment with the distance of the pattern from the camera (bringing it closer if necessary), its tilt (avoiding excessive tilting if the quality isn't high), and the image quality (ensuring there are no desynchronizations between the cameras as quality increases and the ESP32-CAMs' workload goes up), to ensure the frames don't negatively contribute to the calibration.
 <div align="center">
-  <img width="700" alt="Screenshot 2024-02-21 at 15 34 31" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/d63a996f-5f04-4746-9340-81d9cbc0bd04">
+  <img width="650" alt="Screenshot 2024-02-21 at 15 34 31" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/d63a996f-5f04-4746-9340-81d9cbc0bd04">
   <p>Figure 2. Pair of images (left eye, right eye) with incorrect corner detection in the right frame, which should therefore be discarded.
 </p>
 </div>
