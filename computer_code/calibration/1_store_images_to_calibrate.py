@@ -64,15 +64,12 @@ from datetime import datetime
 # to check if the cameras are working properly. You can use a book in 
 # a fixed position to check if the cameras are aligned (e.g. the book's spine
 # has the same angle in both cameras' frames). In other words,
-# the cameras should not be rotated with respect to each other.
+# the cameras should ideally not be rotated with respect to each other.
 
 #################
 # Height        #
 #################
 # Similarly, make sure the book's spine is at the same height in both cameras' frames.
-# In my case, I used a locking nut on the eye mechanism to ensure the cameras remain
-# fixed at the same height, given they had a tendency to move a bit when the servo
-# that drives the eye mechanism was turned on.
 
 # These steps should help the calibration process, so it is recommended you do them.
 # These checks can be performed at any time, too, even after calibration.
