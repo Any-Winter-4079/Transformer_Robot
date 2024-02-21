@@ -21,7 +21,7 @@ import numpy as np
 #    - Translation vectors
 # 2. Extrinsic calibration (calibrate both together for stereo). Obtains:
 #    - Rotation matrix
-#    - Translation matrix
+#    - Translation vector
 #    - Essential matrix
 #    - Fundamental matrix
 
