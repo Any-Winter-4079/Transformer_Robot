@@ -248,7 +248,7 @@ np.save('parameters/rotation_vec_left_eye.npy', rvecs_left)
 np.save('parameters/translation_vec_left_eye.npy', tvecs_left)
 
 np.save('parameters/rotation_matrix.npy', R)
-np.save('parameters/translation_matrix.npy', T)
+np.save('parameters/translation_vector.npy', T)
 np.save('parameters/essential_matrix.npy', E)
 np.save('parameters/fundamental_matrix.npy', F)
 
