@@ -29,11 +29,20 @@ from datetime import datetime
 #    the chessboard pattern in both cameras' frames (in full) before accepting the pair
 #    (by pressing 's').
 
-# You can experiment in your first attempt with various distances.
-# If after calibration (in the next file) the corners are not detected well or the lines
-# connecting them are not correct, you should remove the faulty images and re-calibrate.
-# If not enough images are left, you should refill the folder capturing from a shorter distance.
-# I saved ~40 image pairs to calibrate the cameras.
+#################
+# Notes         #
+#################
+# I ended up running the calibration script (the next file) after every few image captures
+# as a check for bad images (i.e. not taken 'simultaneously'). This helped keep the stereo calibration error low.
+# If quality is not great, bringing the chessboard closer and not over-rotating it may help.
+# If after calibration the corners are not detected well or the lines
+# connecting them are not correct, you should remove the faulty image pairs and re-calibrate.
+# If not enough images are left, you should run this script to capture more pairs.
+# In the end, a lower (14) number of images seemed to work best for me, but in the past (a prior eye mechanism)
+# I had had similar success with 40 images. A larger number, such as 130, did not work well for me, but it's
+# hard to pinpoint the exact reason. A higher quality (such as the one used this time) may have improved
+# corner detection but it may have worsened synchronization as well as the cameras struggle more to
+# serve them.
 
 # Note the calibration process is implemented in the next script.
 # What you can do here is set the desired:
@@ -83,7 +92,7 @@ from datetime import datetime
 #################
 # Configuration #
 #################
-JPEG_QUALITY = 4 # 0-63 lower means higher quality. I use 12 for production.
+JPEG_QUALITY = 6 # 0-63 lower means higher quality. I use 12 for production.
 FRAME_SIZE = "FRAMESIZE_VGA" # FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
 # I use VGA for production.
 USE_HOTSPOT = False
