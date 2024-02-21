@@ -11,21 +11,39 @@ import numpy as np
 # We are using 2 OV2640, which have fisheye lenses, because of their 7.5cm cables,
 # which allows us to pass the cable through the eye and plug it into the ESP32-CAM.
 # Thus, the OpenCV fisheye calibration is used to calibrate the cameras.
-# If you are using a different camera, you may need to use the regular OpenCV calibration.
+# If you are using say a pinhole camera, you will need to remove .fisheye from the functions.
 
 # The calibration is done in two steps:
-# 1. Intrinsic calibration: calibrate the camera individually. Obtains:
+# 1. Intrinsic calibration (calibrate each camera, separately). Obtains:
 #    - Camera matrix
 #    - Distortion coefficients
-# 2. Extrinsic calibration: calibrate the cameras together. Obtains:
+#    - Rotation vectors
+#    - Translation vectors
+# 2. Extrinsic calibration (calibrate both together for stereo). Obtains:
 #    - Rotation matrix
 #    - Translation matrix
+#    - Essential matrix
+#    - Fundamental matrix
 
-# As mentioned in the previous file:
-# If the chess pattern of any image is not correctly detected,
-# delete the pair of images and run this code to re-calibrate.
+#################
+# Notes         #
+#################
+# I ended up running this calibration script after every few image captures
+# as a check for bad images (i.e. not taken 'simultaneously'). This helped keep the stereo calibration error low.
+# If quality is not great, bringing the chessboard closer and not over-rotating it may help.
+# If after calibration the corners are not detected well or the lines
+# connecting them are not correct, you should remove the faulty image pairs and re-calibrate.
+# If not enough images are left, you should run the previous script to capture more pairs.
+# In the end, a lower (14) number of images seemed to work best for me, but in the past (a prior eye mechanism)
+# I had had similar success with 40 images. A larger number, such as 130, did not work well for me, but it's
+# hard to pinpoint the exact reason. A higher quality (such as the one used this time) may have improved
+# corner detection but it may have worsened synchronization as well as the cameras struggle more to
+# serve them.
 
-# Before running this script, measure the chessboard square size and update SQUARE_SIZE.
+#################
+# Instructions  #
+#################
+# Before running this script, measure the chessboard square size in the real world and update SQUARE_SIZE.
 
 #################
 # venv          #
@@ -36,36 +54,39 @@ import numpy as np
 #################
 # Improvement   #
 #################
-
-# When cornerSubPix are not used
-# Left Camera Calibration RMS Error: 0.45808802039639324
-# Right Camera Calibration RMS Error: 0.5578385351320059
-# Stereo Calibration RMS Error: 0.7079189073428462
-
-# When cornerSubPix are used
-# Left Camera Calibration RMS Error: 0.26929817063040035
-# Right Camera Calibration RMS Error: 0.2636646344557017
-# Stereo Calibration RMS Error: 0.565297450433829
+# Using cornerSubPix can improve the quality of the corner detection.
 
 #################
-# Physical robot#
+# Position      #
 #################
-# Make sure eyes don't get lower when the servo moves.
-# The closer the eyes are to each other, the less combined FOV they have.
-# The cameras should not be rotated with respect to each other
+# Make sure the cameras don't change their relative position
+# to one another too much when the eyes move. Also, make sure the cameras are well
+# aligned. My cameras were not perfectly aligned, but calibration still worked.
+# Still, the better the alignment, probably the better the calibration.
+
+#################
+# Errors        #
+#################
+# Left Camera Calibration RMS Error: 0.2901713810526384
+# Right Camera Calibration RMS Error: 0.28126123199806585
+# Stereo Calibration RMS Error: 0.3137333419359242
+
+# Apart from checking the error, make sure the undistorted images look good.
+# See the test_scripts/camera/2_correct_fisheye_distortion.py script for that.
+# Usually, the intrinsic calibration error is easier to keep low than the stereo calibration error.
 
 #################
 # Configuration #
 #################
-SQUARE_SIZE = 2.45  # Update this with the measured square size in cm
-CHESSBOARD_SIZE = (9, 6) # Even though the chessboard has 10x7 squares, the number of inner corners is 9x6
-CORNER_SUBPIX_WINDOW_SIZE = (9, 9)  # Size of the window for cornerSubPix
+SQUARE_SIZE = 2.45  # Update this with the measured square size in cm (here, 2.45cm)
+CHESSBOARD_SIZE = (9, 6) # Even though the chessboard used has 10x7 squares, it has  9x6 inner corners. Yours may vary.
+CORNER_SUBPIX_WINDOW_SIZE = (9, 9)  # Window size for cornerSubPix. Experiment with it.
 
 # Prepare object points like (0,0,0), (1,0,0), (2,0,0) ..., (8,5,0)
 objp = np.zeros((CHESSBOARD_SIZE[0]*CHESSBOARD_SIZE[1], 3), np.float32)
 objp[:, :2] = np.mgrid[0:CHESSBOARD_SIZE[0], 0:CHESSBOARD_SIZE[1]].T.reshape(-1, 2) * SQUARE_SIZE
 
-# Arrays to store object points and image points from all images
+# Create arrays to store object points and image points from all images
 objpoints = []  # 3D points in real-world space
 imgpoints_left = []  # 2D points in image plane for left camera
 imgpoints_right = []  # 2D points in image plane for right camera
@@ -115,7 +136,7 @@ def save_side_by_side(img1, img2, filename, output_dir=side_by_side_images_path)
     cv2.imwrite(os.path.join(output_dir, filename), combined_image)
 
 # Define criteria for cornerSubPix
-criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.01)
+criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
 # Go through image pairs and find chessboard corners
 for img_left, img_right in zip(images_left, images_right):
@@ -161,7 +182,7 @@ for img_left, img_right in zip(images_left, images_right):
 objpoints = [objp.reshape(-1, 1, 3) for _ in range(len(imgpoints_left))]
 
 # Ensure that the image points are also lists of two-dimensional points
-# The image points must be converted to floating point as well
+# and convert them to floating point
 imgpoints_left = [ip.astype(np.float32) for ip in imgpoints_left]
 imgpoints_right = [ip.astype(np.float32) for ip in imgpoints_right]
 
@@ -211,6 +232,10 @@ except Exception as e:
 # Ensure output directory exists
 os.makedirs('parameters', exist_ok=True)
 
+# Print camera matrices
+print("Camera Matrix Left Eye:\n", K_left)
+print("Camera Matrix Right Eye:\n", K_right)
+
 # Save calibration results
 np.save('parameters/camera_matrix_right_eye.npy', K_right)
 np.save('parameters/distortion_coeffs_right_eye.npy', D_right)
@@ -222,9 +247,9 @@ np.save('parameters/distortion_coeffs_left_eye.npy', D_left)
 np.save('parameters/rotation_vec_left_eye.npy', rvecs_left)
 np.save('parameters/translation_vec_left_eye.npy', tvecs_left)
 
-np.save('parameters/R.npy', R)
-np.save('parameters/T.npy', T)
-np.save('parameters/E.npy', E)
-np.save('parameters/F.npy', F)
+np.save('parameters/rotation_matrix.npy', R)
+np.save('parameters/translation_matrix.npy', T)
+np.save('parameters/essential_matrix.npy', E)
+np.save('parameters/fundamental_matrix.npy', F)
 
 print("Calibration completed and results saved.")
