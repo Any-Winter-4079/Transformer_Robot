@@ -72,7 +72,7 @@ import numpy as np
 # Stereo Calibration RMS Error: 0.3137333419359242
 
 # Apart from checking the error, make sure the undistorted images look good.
-# See rectification/1_stereo_rectify.py for that.
+# See undistortion_and_rectification/1_undistort_and_rectify.py for that.
 # Usually, the intrinsic calibration error is easier to keep low than the stereo calibration error.
 
 #################
