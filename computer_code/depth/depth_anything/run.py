@@ -30,6 +30,11 @@ from depth_anything.depth_anything.util.transform import Resize, NormalizeImage,
 # ├── 2_calculate_depth_with_depth_anything.py
 
 #################
+# Performance  #
+#################
+# M1 Max 64 GB RAM: Average depth calculation time over 174 iterations: 0.099 seconds
+
+#################
 # Configuration #
 #################
 ENCODER='vits' # can also be 'vitb' or 'vitl'
