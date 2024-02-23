@@ -17,3 +17,15 @@ In fact, a set of trackbars is implemented - see Figure 2 - to be able to update
   <img width="350" alt="Screenshot 2024-02-23 at 14 56 15" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/2beae73d-f598-4e56-b0a6-693631185265">
   <p>Figure 2. Depth map of 1 image, resulting from applying SGBM to 2 frames (left eye, right eye) captured by the robot's cameras. In the image, a person is seen with one hand behind their head and the other, near the camera, with a thumbs up.</p>
 </div>
+
+With the second implementation ([calculate_depth_with_depth_anything](https://github.com/Any-Winter-4079/Transformer_Robot/blob/main/computer_code/depth/2_calculate_depth_with_depth_anything.py)), and after some modification to run on my M1 (Mac) GPU, it quickly becomes apparent that the quality (even with the smallest version of the model) is much higher, and, with a computation time of ~0.1 seconds per frame (compared to ~0.07 with SGBM), it quickly becomes evident that it is the correct choice. In Figure 3, the result of a pair of monocular depth maps, taken under the same conditions as those shown with SGBM, can be observed.
+
+<div align="center">
+  <img height="300" alt="Screenshot 2024-02-23 at 22 31 20" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/d7c44fdb-b142-47f8-a30d-ae4e30176ca4">
+<img height="300" alt="Screenshot 2024-02-23 at 22 31 27" src="https://github.com/Any-Winter-4079/Transformer_Robot/assets/50542132/580956d8-7bf5-452e-9928-709c8a5bc7e4">
+  <p>Figure 3. Depth map of 2 images, using Depth Anything and the robot's right eye camera. From left to right, a person (me) in a chair with thumbs up and showing the palm of the left hand, and with two thumbs up, respectively.</p>
+</div>
+
+It is worth noting that, just as SGBM allows for the calculation of the depth value given a pair of points (for example, in the SGBM script, the centroids of the face in the left and right frames are obtained, to calculate the depth, if desired) through triangulation, with this alternative (Depth Anything), an attempt could be made to obtain the metric value equally. However, it is considered that the current depth map - in the form of an image - may be sufficient if interpreted by an LLM, especially in environments where there is not a large number of changing obstacles (for example, indoor circuit driving).
+
+In changing environments - such as outdoor driving, another possibility would be to add one or several depth sensors, which although sometimes may present problems for some materials (which absorb/scatter the signal differently and can cause it not to return with sufficient intensity), their installation in conjunction with other techniques (such as depth map), probably represents a more robust solution.
