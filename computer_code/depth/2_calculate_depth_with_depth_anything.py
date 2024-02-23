@@ -54,8 +54,8 @@ from depth_anything.depth_anything.dpt import DepthAnything
 JPEG_QUALITY = 12 # 0-63 lower means higher quality
 FRAME_SIZE = "FRAMESIZE_VGA" # FRAMESIZE_QVGA: 320x240, FRAMESIZE_VGA: 640x480, FRAMESIZE_SVGA: 800x600, FRAMESIZE_XGA: 1024x768, FRAMESIZE_SXGA: 1280x1024, FRAMESIZE_UXGA: 1600x1200
 USE_HOTSPOT = False
-RIGHT_EYE_IP = "172.20.10.10" if USE_HOTSPOT else "192.168.1.180"
-LEFT_EYE_IP = "172.20.10.11" if USE_HOTSPOT else "192.168.1.181"
+RIGHT_EYE_IP = "*.*.*.*" if USE_HOTSPOT else "*.*.*.*" #  Right eye ESP32-CAM IP, e.g. (192, 168, 1, 180).               ** Replace **
+LEFT_EYE_IP = "*.*.*.*" if USE_HOTSPOT else "*.*.*.*"  #  Left eye ESP32-CAM IP, e.g. (192, 168, 1, 181).                ** Replace **
 STREAM_TIMEOUT = 3 # seconds
 CONFIG_TIMEOUT = 5 # seconds
 
