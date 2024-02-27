@@ -148,7 +148,8 @@ def plot_recognition_times():
     # is what (I think) takes the most time, so if we looped here for >1 backend,
     # the first backend would seemingly have a spike in the first image,
     # while the other backends would not (because they would take advantage of the
-    # already built model).
+    # already built model). And given the purpose is to see the spike, we leave it
+    # this way.
     DeepFace.build_model(MODEL)
     
     times = []
@@ -226,7 +227,7 @@ def test_backends():
       for test_image_file in test_image_files:
           test_image_path = os.path.join(TEST_IMAGES_PATH, test_image_file)
           start_time = time.time()
-          result = recognize_face(test_image_path, backend)
+          result = recognize_face(test_image_path, backend=backend)
           end_time = time.time()
           predictions["correct_predictions"] += validate_recognition(result['identity'], test_image_file) if result is not None else 0
           predictions["times"].append(end_time - start_time)
