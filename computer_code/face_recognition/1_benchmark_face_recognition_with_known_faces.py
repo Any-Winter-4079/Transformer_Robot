@@ -43,6 +43,9 @@ import matplotlib.pyplot as plt
 # Note not all people from the 'database' folder need to be in the 'test_images' folder.
 # In my tests, a total of 30 images (people) were chosen for the 'test_images' folder.
 
+#################
+# Notes         #
+#################
 # While test_backends() is designed to test the backends for a single model, you can
 # change the model to see which combination works better. After n model calls,
 # you should know which backend and model combination works better for your dataset.
