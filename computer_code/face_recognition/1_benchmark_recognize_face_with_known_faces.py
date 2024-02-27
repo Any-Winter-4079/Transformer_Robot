@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 # Description   #
 #################
 # This is a script to perform face recognition using the DeepFace library.
+# This script is developed to work with known faces only.
 
 #################
 # Instructions  #
@@ -27,6 +28,9 @@ import matplotlib.pyplot as plt
 
 # The 1469 images are divided into 786 folders, one per person. Note you can also
 # place some images of yourself!
+
+# All images are resized to the same size, in this case, 250x250 pixels, which
+# is the default size for the dataset.
 
 # The test images are in the 'test_images' folder and they are chosen from the same dataset.
 # Note the images in the 'test_images' folder must be removed from the 'database' folder.
