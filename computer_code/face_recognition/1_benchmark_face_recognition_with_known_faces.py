@@ -25,7 +25,7 @@ import matplotlib.pyplot as plt
 # ├── Aaron_Guiel
 # │   ├── Aaron_Guiel_0001.jpg
 # ...
-# 1_benchmark_recognize_face_with_known_faces.py
+# 1_benchmark_face_recognition_with_known_faces.py
 
 # The 1439 images are divided into 786 folders, one per person. Note you can also
 # place some images of yourself! The number of images in each folder varies
@@ -38,7 +38,7 @@ import matplotlib.pyplot as plt
 # test_images
 # ├── Aaron_Eckhart_0002.jpg
 # ...
-# 1_benchmark_recognize_face_with_known_faces.py
+# 1_benchmark_face_recognition_with_known_faces.py
 
 # Note not all people from the 'database' folder need to be in the 'test_images' folder.
 # In my tests, a total of 30 images (people) were chosen for the 'test_images' folder.
