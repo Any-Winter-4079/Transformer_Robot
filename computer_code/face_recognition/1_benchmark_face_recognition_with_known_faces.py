@@ -50,6 +50,9 @@ import matplotlib.pyplot as plt
 # change the model to see which combination works better. After n model calls,
 # you should know which backend and model combination works better for your dataset.
 
+# From the experiments, ArcFace seems to be the best model for this dataset, with
+# the yunet and fastmtcnn backends being the fastest to provide good results.
+
 #################
 # venv          #
 #################
