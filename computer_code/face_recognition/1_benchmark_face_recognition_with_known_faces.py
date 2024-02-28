@@ -17,8 +17,9 @@ import matplotlib.pyplot as plt
 # https://www.kaggle.com/hereisburak/pins-face-recognition
 # Another dataset that looks interesting:
 # https://www.kaggle.com/datasets/jessicali9530/lfw-dataset/data
-# Of this dataset, I used 1439 images, moving their folders
-# to a 'database' folder. So the directory structure is:
+# Of this dataset, I took all names starting with 'A' and placed them in the 'database' folder.
+# In total, there are 432 people in the 'database' folder, with a total of 1024 images.
+# The directory structure is:
 # database
 # ├── Aaron_Eckhart
 # │   ├── Aaron_Eckhart_0001.jpg
@@ -27,31 +28,22 @@ import matplotlib.pyplot as plt
 # ...
 # 1_benchmark_face_recognition_with_known_faces.py
 
-# The 1439 images are divided into 786 folders, one per person. Note you can also
-# place some images of yourself! The number of images in each folder varies
-# in the dataset and it's something worth experimenting with.
-
 # The test images are in the 'test_images' folder and they are chosen from the same dataset.
+# For reproducibility, I chose the last image of every person with at least 4 images, up to 30 people (starting from the beginning).
 # Note the images in the 'test_images' folder must be removed from the 'database' folder.
 # The directory structure is:
 # database
 # test_images
-# ├── Aaron_Eckhart_0002.jpg
+# ├── Aaron_Peirsol_0004.jpg
 # ...
 # 1_benchmark_face_recognition_with_known_faces.py
-
-# Note not all people from the 'database' folder need to be in the 'test_images' folder.
-# In my tests, a total of 30 images (people) were chosen for the 'test_images' folder.
 
 #################
 # Notes         #
 #################
-# While test_backends() is designed to test the backends for a single model, you can
+# While test_backends() is designed to test the backends with a single model, you can
 # change the model to see which combination works better. After n model calls,
 # you should know which backend and model combination works better for your dataset.
-
-# From the experiments, ArcFace seems to be the best model for this dataset, with
-# the yunet and fastmtcnn backends being the fastest to provide good results.
 
 #################
 # venv          #
