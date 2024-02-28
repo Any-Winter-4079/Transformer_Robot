@@ -17,11 +17,11 @@ import matplotlib.pyplot as plt
 # https://www.kaggle.com/hereisburak/pins-face-recognition
 # Another dataset that looks interesting:
 # https://www.kaggle.com/datasets/jessicali9530/lfw-dataset/data
-# Of this dataset, I took all names starting with 'A' and placed them in the 'database' folder.
-# In total, there are 432 people in the 'database' folder, with a total of 1054 images -30
+# Of this dataset, I took all names starting with 'A' and placed them in the '1_database' folder.
+# In total, there are 432 people in the '1_database' folder, with a total of 1054 images -30
 # of which will be moved aside for testing purposes.
 # The directory structure is:
-# database
+# 1_database
 # ├── Aaron_Eckhart
 # │   ├── Aaron_Eckhart_0001.jpg
 # ├── Aaron_Guiel
@@ -29,12 +29,12 @@ import matplotlib.pyplot as plt
 # ...
 # 1_benchmark_face_recognition_with_known_faces.py
 
-# The test images are in the 'test_images' folder and they are chosen from the same dataset.
+# The test images are in the '1_test_images' folder and they are chosen from the same dataset.
 # For reproducibility, I chose the last image of every person with at least 4 images, up to 30 people (starting from the beginning).
-# Note the images in the 'test_images' folder must be removed from the 'database' folder.
+# Note the images in the '1_test_images' folder must be removed from the '1_database' folder.
 # The directory structure is:
-# database
-# test_images
+# 1_database
+# 1_test_images
 # ├── Aaron_Peirsol_0004.jpg
 # ...
 # 1_benchmark_face_recognition_with_known_faces.py
@@ -78,8 +78,8 @@ MODELS = [
   "ArcFace"
 ]
 DISTANCE_METRICS = ["cosine", "euclidean", "euclidean_l2"]
-TEST_IMAGES_PATH = "test_images"
-DATABASE_PATH = "database"
+TEST_IMAGES_PATH = "1_test_images"
+DATABASE_PATH = "1_database"
 # THRESHOLD = 1.1 # (distances < this threshold will be returned from the find function.
 # In other words, set how close the match should be. Lower values risk false negatives,
 # high values risk getting false positives.)
@@ -129,7 +129,7 @@ def recognize_face(test_image_path, backend=BACKEND):
            # threshold=THRESHOLD
         )
         # dfs is a list of dataframes, one dataframe per face recognized
-        # test_images in this basic version are not meant for >1 face
+        # 1_test_images in this basic version are not meant for >1 face
         face = dfs[0]
         # Once we have the face, we return its top prediction
         return face.iloc[0] if len(face) > 0 else None
