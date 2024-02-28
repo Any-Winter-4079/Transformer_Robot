@@ -202,7 +202,7 @@ def plot_backend_comparison(results, test_image_files):
     ax2.grid(True, which='major', axis='y', linestyle='--', linewidth=0.5)
 
     fig.tight_layout()
-    plt.title(f'Correct predictions (bars) and average time (lines) for {MODEL}')
+    plt.title(f'Correct predictions (bars) and average time (lines) for {MODEL} and {DISTANCE_METRIC}.')
     plt.show()
 
  # Function to test the backends for face recognition
