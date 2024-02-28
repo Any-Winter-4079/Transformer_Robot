@@ -18,7 +18,8 @@ import matplotlib.pyplot as plt
 # Another dataset that looks interesting:
 # https://www.kaggle.com/datasets/jessicali9530/lfw-dataset/data
 # Of this dataset, I took all names starting with 'A' and placed them in the 'database' folder.
-# In total, there are 432 people in the 'database' folder, with a total of 1024 images.
+# In total, there are 432 people in the 'database' folder, with a total of 1054 images -30
+# of which will be moved aside for testing purposes.
 # The directory structure is:
 # database
 # ├── Aaron_Eckhart
