@@ -90,7 +90,7 @@ MODELS = [
 DISTANCE_METRICS = ["cosine", "euclidean", "euclidean_l2"]
 TEST_IMAGES_PATH = "test_images" # make sure to create this folder and place some images there
 DATABASE_PATH = "database" # make sure to create this folder and place some images there
-THRESHOLD = 0.5 # (distances < this threshold will be returned from the find function.
+# THRESHOLD = 0.5 # (distances < this threshold will be returned from the find function.
 # In other words, set how close the match should be. Lower values risk false negatives,
 # high values risk getting false positives.)
 # Note different metrics (and models) require different thresholds
@@ -181,7 +181,7 @@ def recognize_face(test_image_path, backend=BACKEND):
            detector_backend=backend,
            distance_metric=DISTANCE_METRIC,
            enforce_detection=False,
-           # threshold=threshold
+           # threshold=THRESHOLD
         )
         # dfs is a list of dataframes, one dataframe per face recognized
         top_predictions = get_top_predictions(dfs)
