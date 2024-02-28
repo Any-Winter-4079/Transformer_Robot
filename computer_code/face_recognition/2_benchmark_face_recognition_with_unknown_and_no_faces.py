@@ -14,30 +14,21 @@ import matplotlib.pyplot as plt
 #################
 # Instructions  #
 #################
-# For testing, I used the following dataset:
-# https://www.kaggle.com/hereisburak/pins-face-recognition
-# Another dataset that looks interesting:
-# https://www.kaggle.com/datasets/jessicali9530/lfw-dataset/data
-# Of this dataset, I used 1439 images, moving their folders
-# to a 'database' folder. So the directory structure is:
-# database
-# ├── Aaron_Eckhart
-# │   ├── Aaron_Eckhart_0001.jpg
-# ├── Aaron_Guiel
-# │   ├── Aaron_Guiel_0001.jpg
-# ...
-# 1_benchmark_face_recognition_with_unknown_and_no_faces.py
-
-# The 1439 images are divided into 786 folders, one per person. Note you can also
-# place some images of yourself! The number of images in each folder varies
-# in the dataset and it's something worth experimenting with.
+# Startint with the database from the previous script, I added:
+# Tom_Cruise, Salma_Hayek, and Valentino_Rossi from the full dataset, making it
+# 4 known people (with Arnold_Schwarzenegger, already there for starting with 'A').
+# 3 more images are added to the database for each of these 4 people,
+# given side_close, side_far and front_far images seem rare on the
+# LFW dataset.
 
 # All images are resized to the same size, in this case, 250x250 pixels, which
-# is the default size for the dataset.
+# is the default size for this dataset. This includes new images added to
+# the database and test images.
 
-# The test images are in the 'test_images' folder and they are are chosen from the internet,
-# matching some celebrities from the dataset.
-# Test images are taken in four 'flavors': front_close, front_far, side_close, side_far.
+# Test images are in the '2_test_images' folder and they are are chosen from the internet.
+# Specifically: (known) Salma_Hayek, (known) Tom_Cruise, (known) Valentino_Rossi, (known) Arnold_Schwarzenegger
+# (unknown) Curry, (unknown) Shaq, (unknown) Emma_Roberts, (unknown) Vanessa_Hudgens, (unknown) unknown_0001-0016
+# Test images (showing faces) are taken in four 'flavors': front_close, front_far, side_close, side_far.
 # The directory structure is:
 # test_images
 # ├── Salma_Hayek_front_close_known_0001.jpg
@@ -50,15 +41,11 @@ import matplotlib.pyplot as plt
 # ├── Curry_side_far_unknown_0004.jpg
 # ├── unknown_0001.jpg
 # ...
-# 1_benchmark_face_recognition_with_unknown_and_no_faces.py
+# 2_benchmark_face_recognition_with_unknown_and_no_faces.py
+
+# So to recap, 4 known people (with 4 images each), 4 unknown people (with 4 images each) and 16 images without faces.
 
 # Names can have a _surname or not, and both should work well.
-
-# Some extra images are taken from the internet and are placed in the 'database' folder (in 250x250 size).
-# for side and far images as the dataset mostly contains close and front images.
-
-# Note there are known and unknown people in 'test_images' and they are labeled with their 'flavor' + known/unknown + number.
-# The exception to this naming convention are images (unknown_0001.jpg, etc.) that do not contain faces.
 
 #################
 # Notes         #
@@ -66,8 +53,8 @@ import matplotlib.pyplot as plt
 # While test_backends() is designed to test the backends for a single model, you can
 # change the model to see which combination works better. After n model calls,
 # you should know which backend and model combination works better for your dataset.
-
-# After you close the plot, a second plot will be shown with the 'flavor' stats (front_close, front_far, side_close, side_far).
+# After you close the plot, a second plot will be shown with the 'flavor' stats
+# (front_close, front_far, side_close, side_far).
 
 #################
 # venv          #
