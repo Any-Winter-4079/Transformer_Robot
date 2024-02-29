@@ -88,8 +88,8 @@ MODELS = [
   "ArcFace"
 ]
 DISTANCE_METRICS = ["cosine", "euclidean", "euclidean_l2"]
-TEST_IMAGES_PATH = "test_images" # make sure to create this folder and place some images there
-DATABASE_PATH = "database" # make sure to create this folder and place some images there
+TEST_IMAGES_PATH = "2_test_images" # make sure to create this folder and place some images there
+DATABASE_PATH = "2_database" # make sure to create this folder and place some images there
 # THRESHOLD = 0.5 # (distances < this threshold will be returned from the find function.
 # In other words, set how close the match should be. Lower values risk false negatives,
 # high values risk getting false positives.)
