@@ -1,0 +1,112 @@
+Here are a few examples of mathematical word problems solved in a careful, formal manner.
+The solutions will be sent to a SymPy solver to obtain the numerical answer.
+Not all SymPy functionality is available. Hence, you must adhere to the following rules when writing the equations:
+
+The rules for the equations are:
+
+1) Equalities are the only relations allowed in the equations. For example, [[eq a = 5]] and [[eq b = a + 3]] are allowed, but [[eq a > 5]] and [[eq b >= a * 5]] are not.
+If you see an inequality, for example "Luigi had more apples than Mario", simply ignore it (it will be used afterwards to verify the answer, but it will not be used to solve the problem). Be careful, because "Luigi has 3 more apples than Mario" is an equality, not an inequality, as it can be written as [[eq luigi_apples = mario_apples + 3]].
+2) Spaces in variable names are not allowed. For example, [[var a]] is allowed, but [[var number of legs]] is not. You can use descriptive names if it helps you understand the problem. For example, [[var number_of_legs]] is allowed.
+3) The following operations are allowed: addition (+), substraction (-), multiplication (), division (/), and exponentiation (*). Square roots can be expressed as exponentiation with a fraction (1/2).
+For example: [[eq b = a + 3]], [[eq b = a - 2]], [[eq c = b * 4]], [[eq d = c / 2]], [[eq e = d * 2]], [[eq f = e * (1/2)]]
+4) Equations without equality are not allowed. For example, [[eq a + 3]] or [[eq b]] are not allowed.
+5) If you need to use a constant such as e or pi, use an approximation. For example, [[eq circle_area = 3.141593 * r * 2]] is allowed, but [[eq circle_area = pi * r * 2]] is not. If you want to use these constants, you need to assign an approximation to them. For example, [[eq pi = 3.141593]] and then you can use [[eq circle_area = pi * r ** 2]].
+6) Do not use variables in the right-hand side of the equations if they are not defined in the left-hand side in a previous equation. For example, [[eq a = b + 3]] is not allowed if b is not defined in a previous equation, but [[eq b = 3]] and [[eq a = b ** 5]] is allowed.
+7) The answer variable must be a single variable. For example, [[eq total_apples = mario_apples + luigi_apples]] [[answer total_apples]] is allowed, but [[answer mario_apples + luigi_apples]] is not.
+8) At the end, write the answer to the problem. For example, [[answer total_apples]].
+
+4 examples of incorrect answers:
+
+Q: Mary had 5 apples. The next morning, she ate 2 apples. Then, in the afternoon, she bought as many apples as she had after eating those apples in the morning. How many apples did she end up with?
+A: Mary had 5 apples. [[eq initial_apples = 5]].
+The next morning, she ate 2 apples. [[eq apples_after_morning = initial_apples - 2]].
+Then, in the afternoon, she bought as many apples as she had after eating those apples in the morning. [[eq apples_bought = apples_after_morning]].
+How many apples did she end up with? The answer is [[eq apples_after_morning + apples_bought]].
+[[answer apples_after_morning + apples_bought]].
+
+Reason for incorrectness: The answer, [[answer apples_after_morning + apples_bought]], is not a single variable, as it is the sum of two variables.
+Advice: Define an equation for the answer, and then write the answer at the end. For example, [[eq total_apples = apples_after_morning + apples_bought]] [[answer total_apples]].
+
+Q: How many minutes from now will William arrive if he intended to arrive in 30 minutes but is currently 10 minutes late, and he plans to take two shortcuts, each saving him 7.5 minutes, to arrive on time?
+A:
+William will take two shortcuts that will save him 7.5 minutes each. [[eq time_saved = 7.5 * 2]].
+He is already 10 minutes behind schedule. [[eq time_behind = 10]].
+He intended to arrive in 30 minutes. [[eq planned_time = 30]].
+How many minutes from now will William arrive? The answer is [[eq total_time = planned_time - time_behind - time_saved]].
+[[answer total_time]].
+
+Reason for incorrectness: The answer grouped several steps into one, doing [[eq total_time = planned_time - time_behind - time_saved]], and it led to a wrong reasoning, as the time_behind should be added to the planned_time, not subtracted. In other words, a delay adds time to the planned time, not subtracts it.
+Advice: Write the equations in a step-by-step manner, and then write the answer at the end.
+
+Q: The planet Goob completes three revolutions after every 2 weeks. How many hours will it take for it to complete 200 revolutions?
+A:
+The planet Goob completes three revolutions after every 2 weeks. [[eq revolutions_in_2_weeks = 3]].
+In one week, the planet completes half of the revolutions. [[eq revolutions_in_1_week = revolutions_in_2_weeks / 2]].
+In one day, the planet completes 1/7 of the revolutions. [[eq revolutions_in_1_day = revolutions_in_1_week / 7]].
+How many hours will it take for it to complete 200 revolutions? The answer is [[eq hours_for_200_revolutions = 200 / revolutions_in_1_day]].
+[[answer hours_for_200_revolutions]].
+
+Reason for incorrectness: The answer is about hours but is calculated using days. See [[eq hours_for_200_revolutions = 200 / revolutions_in_1_day]] mixes days and hours. An intermediate equation should be used to convert days to hours.
+Advice: Make sure that the units are consistent in every equation. If you need to convert units, do it in a separate equation.
+
+Q: Each dandelion produces 300 seeds. 1/3rd of the seeds land in water and die. 1/6 of the starting number are eaten by insects. Half the remainder sprout and are immediately eaten. How many dandelions survive long enough to flower?
+A:
+Each dandelion produces 300 seeds. [[eq seeds_per_dandelion = 300]].
+1/3rd of the seeds land in water and die. [[eq seeds_that_survive_water = seeds_per_dandelion / 3]].
+1/6th of the starting number are eaten by insects. [[eq seeds_that_survive_insects = seeds_that_survive_water / 6]].
+Half of the remainder sprout and are immediately eaten. [[eq seeds_that_survive_sprouting = seeds_that_survive_insects / 4]].
+How many dandelions survive long enough to flower? The answer is [[eq dandelions_that_survive = seeds_that_survive_sprouting / 1]].
+[[answer dandelions_that_survive]].
+
+Reason for incorrectness: [[eq seeds_that_survive_water = seeds_per_dandelion / 3]] is incorrect. The seeds that survive water are the complement of the seeds that do not survive water. The correct equations should be [[eq seeds_that_do_not_survive_water = seeds_per_dandelion / 3]] and [[eq seeds_that_survive_water = seeds_per_dandelion - seeds_that_do_not_survive_water]]. Same for the insects. Finally, those subject to be eaten after sprouting are the seeds that survive both water and insects, yet the answer only considered the seeds that survive insects. They also divided by 4 when they should have divided by 2.
+Advice: Remember with probabilities and percentages, we can decompose as [[eq seeds_that_do_not_survive_water = seeds_per_dandelion / 3]] and [[eq seeds_that_survive_water = seeds_per_dandelion - seeds_that_do_not_survive_water]] because the seeds that do not survive water are the complement of the seeds that survive water. With probabilities, it would have been similar, for example [[eq_probability_of_water_death = 1/3]] and [[eq_probability_of_water_survival = 1 - probability_of_water_death]].
+The answer correctly noted that for insects, we must use the starting number of seeds as base, so we must give credit there. But those subject to be eaten after sprouting are the seeds that survive both water and insects, so it should read [[eq seeds_that_reach_sprouting = seeds_per_dandelion - seeds_that_do_not_survive_water - seeds_that_do_not_survive_water]].
+Finally, the answer should have been [[eq dandelions_that_survive = seeds_that_reach_sprouting / 2]] [[answer dandelions_that_survive]].
+
+4 examples of correct answers:
+
+Q: Mary had 5 apples. The next morning, she ate 2 apples. Then, in the afternoon, she bought as many apples as she had after eating those apples in the morning. How many apples did she end up with?
+A:
+Mary had 5 apples. [[eq initial_apples = 5]].
+The next morning, she ate 2 apples. [[eq apples_after_morning = initial_apples - 2]].
+Then, in the afternoon, she bought as many apples as she had after eating those apples in the morning. [[eq apples_bought = apples_after_morning]].
+How many apples did she end up with? The answer is [[eq total_apples = apples_after_morning + apples_bought]].
+[[answer total_apples]].
+
+Q: How many minutes from now will William arrive if he intended to arrive in 30 minutes but is currently 10 minutes late, and he plans to take two shortcuts, each saving him 7.5 minutes, to arrive on time?
+A:
+William will take two shortcuts that will save him 7.5 minutes each. [[eq time_saved = 7.5 * 2]].
+He is already 10 minutes behind schedule. [[eq time_behind = 10]].
+He intended to arrive in 30 minutes. [[eq planned_time = 30]].
+Without shortcuts, his intended time would have been increased by the time behind. [[eq total_time_without_shortcuts = planned_time + time_behind]].
+How many minutes from now will William arrive? The shortcuts will save him some time, so the answer is [[eq total_time_with_shortcuts = total_time_without_shortcuts - time_saved]].
+[[answer total_time_with_shortcuts]].
+
+Q: The planet Goob completes three revolutions after every 2 weeks. How many hours will it take for it to complete 200 revolutions?
+A:
+The planet Goob completes three revolutions after every 2 weeks. [[eq revolutions_in_2_weeks = 3]].
+In one week, the planet completes half of the revolutions. [[eq revolutions_in_1_week = revolutions_in_2_weeks / 2]].
+In one day, the planet completes 1/7 of the revolutions. [[eq revolutions_in_1_day = revolutions_in_1_week / 7]].
+In one hour, the planet completes 1/24 of the revolutions. [[eq revolutions_in_1_hour = revolutions_in_1_day / 24]].
+How many hours will it take for it to complete 200 revolutions? The answer is [[eq hours_for_200_revolutions = 200 / revolutions_in_1_hour]].
+[[answer hours_for_200_revolutions]].
+
+Q: Each dandelion produces 300 seeds. 1/3rd of the seeds land in water and die. 1/6 of the starting number are eaten by insects. Half the remainder sprout and are immediately eaten. How many dandelions survive long enough to flower?
+A:
+We assume each seed has the potential to become a dandelion.
+Each dandelion produces 300 seeds. [[eq seeds_per_dandelion = 300]].
+1/3rd of the seeds land in water and die. [[eq seeds_that_do_not_survive_water = seeds_per_dandelion / 3]].
+Very importantly, 1/6 of the starting number (not 1/6 of the seeds that survive water) are eaten by insects. [[eq seeds_that_do_not_survive_insects = seeds_per_dandelion / 6]].
+How many even reach sprouting? The total seeds minus those that die in the independendent events of water-driven death and insect-driven death. [[eq seeds_that_reach_sprouting = seeds_per_dandelion - seeds_that_do_not_survive_water - seeds_that_do_not_survive_insects]].
+And of these, half is eaten immediately. [[eq seeds_that_survive_sprout_eating = seeds_that_reach_sprouting / 2]].
+How many dandelions survive long enough to flower? The answer is [[eq dandelions_that_survive = seeds_that_survive_sprout_eating]].
+[[answer dandelions_that_survive]].
+
+You must now solve the problems below in a formal and correct manner.
+
+Q: Mario and Luigi together had 10 years of experience in soccer. Luigi had 3 more than Mario. How many did Mario have?
+A:
+Mario and Luigi together had 10 years of experience in soccer. [[eq years_together = 10]] and [[eq years_mario + years_luigi = years_together]].
+Luigi had 3 more than Mario. [[eq years_luigi = years_mario + 3]].
+How many did Mario have? The answer is the value of years_mario, which is already solved in the second equation.
+[[answer years_mario]].
