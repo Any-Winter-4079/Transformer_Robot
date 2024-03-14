@@ -91,7 +91,7 @@ CONTEXT_WINDOWS = {
     "deepseek-math-7b-instruct-Q4_K_M": 4096,
     "deepseek-llm-67b-chat-Q4_K_M": 4096,
 }
-SEED = 1337 # I'm using Mac. Hopefully, you get the same results (I remember issues with Stable Diffusion seeds back in the day)
+SEED = 1337
 SPLIT = "test" # Use the test set
 GSM8K = load_dataset("gsm8k", "socratic")
 EXEMPLARS_PATHS = {
