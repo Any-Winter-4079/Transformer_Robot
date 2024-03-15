@@ -77,14 +77,15 @@ MODELS = {
 }
 CONTEXT_WINDOWS = {
     "llama-7b-q4_0": 4096,
+    "llama-7b-f16": 4096,
     "llama-13b-q4_0": 4096,
     "llama-7b-chat-q4_0": 4096,
     "llama-13b-chat-q4_0": 4096,
-    "mistral-7b-instruct-v0.2.Q8_0": 4096,
     "mixtral-8x7b-instruct-q8_0": 32768,
     "mixtral-8x7b-instruct-q5_0": 32768,
     "mixtral-8x7b-instruct-Q4_K_M": 32768,
     "mixtral-8x7b-instruct-Q3_K_M": 32768,
+    "mistral-7b-instruct-v0.2.Q8_0": 4096,
     "70b-code-q4": 4096,
     "tora-13b": 4096,
     "deepseek-coder-33B-instruct-Q5_K_M": 16384,
