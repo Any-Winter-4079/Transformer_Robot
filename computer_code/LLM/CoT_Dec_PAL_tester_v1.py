@@ -96,7 +96,7 @@ SEED = 1337
 SPLIT = "test" # Use the test set
 GSM8K = load_dataset("gsm8k", "socratic")
 EXEMPLARS_PATHS = {
-    "PAL": "exemplars/GSM8k_Program_Aided_LM_Principles_Own.txt", # Program-aided Language Models [https://arxiv.org/pdf/2211.10435.pdf]
+    "PAL": "exemplars/GSM8k_Program_Aided_LM_Principles.txt", # Program-aided Language Models [https://arxiv.org/pdf/2211.10435.pdf]
     "CoT": "exemplars/GSM8K_Chain_of_Thought_8-shot.txt", # Chain of Thought
     "Dec8": "exemplars/GSM8K_Declarative_8-shot.txt", # Declarative (SymPy)
     "Dec3P": "exemplars/GSM8K_Declarative_3-shot_Principles.txt", # Declarative (SymPy)
