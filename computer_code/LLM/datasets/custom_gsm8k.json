@@ -1,0 +1,176 @@
+{
+    "categories": {
+      "General reasoning": [
+        {
+          "question": "A water tank is filled by Pipe A in 3 hours and emptied by Pipe B in 6 hours. If both pipes are opened, how many hours will it take to fill the tank?",
+          "answer": "6"
+        },
+        {
+          "question": "A car travels 150 miles in 3 hours. If its speed decreases by 10 mph for the next 2 hours, how far does it travel in total, in miles?",
+          "answer": "230"
+        },
+        {
+          "question": "A farmer collects 4 eggs from each hen every day. If half of his 20 hens laid an extra egg per day, how many eggs would he collect in a week?",
+          "answer": "630"
+        },
+        {
+          "question": "A machine produces 100 parts every 4 hours. Maintenance increases its output by 25%. After maintenance, how many parts does it produce in 8 hours?",
+          "answer": "250"
+        },
+        {
+          "question": "A battery charges 20% every hour. If it starts at 10% and stops charging once it reaches 80%, how many hours does it take to charge?",
+          "answer": "3.5"
+        },
+        {
+          "question": "If 5 workers can complete a task in 8 days, and each additional worker reduces the time to complete the task by 10% of the original time, how many days will it take 8 workers to complete the task?",
+          "answer": "5.6"
+        },
+        {
+          "question": "A store sells pencils in packs of 12 and notebooks in packs of 5. If you buy 3 packs of pencils and 4 packs of notebooks, how many items do you have?",
+          "answer": "56"
+        },
+        {
+          "question": "If the area of a square garden is 64 square meters, how long is the perimeter of the garden, in meters?",
+          "answer": "32"
+        },
+        {
+          "question": "A recipe for 8 servings requires 2 cups of sugar. How many cups of sugar are needed for 24 servings?",
+          "answer": "6"
+        },
+        {
+          "question": "A train moves at 60 mph for the first 2 hours and 90 mph for the next 3 hours. What is the average speed of the train for the entire journey, in miles per hour?",
+          "answer": "78"
+        },
+        {
+          "question": "A collection of 480 stamps is divided equally among 4 friends. If one friend gives 30 stamps to another, how many stamps does the giver have left?",
+          "answer": "90"
+        },
+        {
+          "question": "If you save $500 in January, $600 in February, $400 in March, and spend $300 in April, how many dollars do you have in your savings by the end of April?",
+          "answer": "1200"
+        },
+        {
+          "question": "A shopper buys 3 shirts at $15 each and 2 pairs of jeans at $30 each. If they have a $10 coupon, how much do they pay in total, in dollars?",
+          "answer": "95"
+        },
+        {
+          "question": "During a 7-day week, a worker earns $100 per day for the first 5 days and $125 for the last 2 days. What is their total weekly earnings, in dollars?",
+          "answer": "750"
+        },
+        {
+          "question": "If a car's value decreases by 20% each year from its original price of $20,000, what will be its value after 3 years, in dollars?",
+          "answer": "10240"
+        }
+      ],
+      "Unit Conversion": [
+        {
+          "question": "A spaceship travels at a speed of 17,500 miles per hour. How many miles will it travel in 2.5 days?",
+          "answer": "1050000"
+        },
+        {
+          "question": "A research facility uses 2.4 terabytes of data in 4 days. Assuming constant usage, how many gigabytes of data will it use in one week?",
+          "answer": "4200"
+        },
+        {
+          "question": "A train needs to cover a distance of 450 kilometers. If it travels at a constant speed of 90 kilometers per hour, how many minutes will the journey take?",
+          "answer": "300"
+        },
+        {
+          "question": "The Earth rotates about its axis approximately once every 24 hours. How many degrees does it rotate in one minute?",
+          "answer": "0.25"
+        },
+        {
+          "question": "A car travels at a speed of 60 miles per hour. How many feet does it travel in 5 minutes?",
+          "answer": "26400"
+        }
+      ],
+      "Red Herring": [
+        {
+          "question": "A library has 50 fiction books, 30 non-fiction books, and 20 maganizes. How many books must be added to have 120 books in total?",
+          "answer": "40"
+        },
+        {
+          "question": "If a car with a gas tank of 40 gallons, full before traveling, travels 150 miles and consumes gas at 1 gallon per 6 miles, knowing they keep 10 gallons of water in the trunk, and gas costs $2.50 per gallon, how much will it cost to refill the gas tank, in dollars?",
+          "answer": "62.50"
+        },
+        {
+          "question": "An office orders 200 sheets of paper and 100 pens for the staff. After a meeting, it's decided to order an additional 50 notebooks for future workshops. If the office plans to double the amount of paper for printing handouts for an upcoming conference, how many additional paper sheets do they need to order?",
+          "answer": "200"
+        },        
+        {
+          "question": "A fruit basket has 8 apples, 5 oranges, 2 apple pies, and 7 bananas. If 4 fruits are eaten, how many fruits are left?",
+          "answer": "16"
+        },
+        {
+          "question": "In a survey on the street, 15 people were watching, 20 answered they like coffee, and 5 answered they do not like it. How many people participated in the survey at the very least?",
+          "answer": "25"
+        }
+      ],
+      "Conditional Logic": [
+        {
+          "question": "If a discount is applied to purchases over $50, and John (intending to make use of the discount) buys 2 items worth $15 and 3 items worth $5, how much does he pay?",
+          "answer": "45"
+        },
+        {
+          "question": "If buying more than 3 books grants a 10% discount, and a customer buys 4 books priced at $20 each, what is the total cost for the customer?",
+          "answer": "72"
+        },
+        {
+          "question": "A bakery offers a deal: buy 5 pastries and get the 6th for free. If Sarah chooses 14 pastries -at $3 each-, what is the difference between the total cost with and without the deal?",
+          "answer": "6"
+        },
+        {
+          "question": "A parking lot charges $2 per hour but offers a flat rate of $10 for up to 8 hours. If a car is parked for 7 hours, how much does the parking cost, assuming they take the best deal?",
+          "answer": "10"
+        },
+        {
+          "question": "If a gym membership costs $25 per month and offers a 20% discount for an annual payment upfront, and an additional one-time signup fee of $30 is applied, what is the total cost for a new member choosing the annual payment?",
+          "answer": "270"
+        }
+      ],
+      "Probability and Statistics": [
+        {
+          "question": "80% of insects give off a particular smell. If 4 insects are randomly selected, what is the probability that only the last 2 give off the smell, expressed from 0 to 1 as a floating value?",
+          "answer": "0.0256"
+        },
+        {
+          "question": "Doctors diagnose a disease correctly 80% of the time. If 3 patients have the disease, what is the probability that all 3 are diagnosed correctly, expressed from 0 to 1 as a floating value?",
+          "answer": "0.512"
+        },
+        {
+          "question": "A bag contains 3 red, 2 blue, and 5 green marbles. What is the probability of drawing a blue marble first then a green marble, without replacement, expressed from 0 to 1 as a floating value?",
+          "answer": "0.10"
+        },
+        {
+          "question": "The probability of raining on any given day in April is 0.2. What is the probability of it not raining two consecutive days in April, using the same notation?",
+          "answer": "0.64"
+        },
+        {
+          "question": "If two coins are flipped simultaneously, what is the probability of both landing on heads, from 0 to 1 as a floating value?",
+          "answer": "0.25"
+        }
+      ],
+      "Set Theory": [
+        {
+          "question": "In a class of 30 students, 18 play basketball, and 12 play soccer. If 5 students play both, how many students play neither?",
+          "answer": "5"
+        },
+        {
+          "question": "Two sets A and B have 5 and 7 elements respectively with 2 elements in common. How many elements are in A union B?",
+          "answer": "10"
+        },
+        {
+          "question": "A survey on a group of 40 people shows 25 like tea, 18 like coffee, and 10 like both. How many people like neither?",
+          "answer": "7"
+        },
+        {
+          "question": "Set C has 12 elements, and Set D has 8 elements. If C intersect D has 3 elements, how many elements are in C union D?",
+          "answer": "17"
+        },
+        {
+          "question": "In a group of 50 people, 28 use Android phones, 30 use iPhones, and 8 use neither. How many use both Android and iPhone?",
+          "answer": "16"
+        }
+      ]
+    }
+  }
