@@ -25,8 +25,8 @@ def compare_predictions(file_1_data, file_2_data):
                 incorrect_in_both += 1
     return correct_in_both, correct_in_file_1_only, correct_in_file_2_only, incorrect_in_both
 
-file_1_path = "./results/mixtral-8x7b-instruct-q50_GSM8K_2024-03-09_22-23-54_seed_966_CoT_all samples.txt"
-file_2_path = "./results/mixtral-8x7b-instruct-q50_GSM8K_2024-03-06_23-09-31_seed_1337_CoT_all samples.txt"
+file_1_path = "./results/mixtral-8x7b-instruct-q5_0_GSM8K_2024-03-09_22-23-54_seed_966_CoT_all samples.txt"
+file_2_path = "./results/mixtral-8x7b-instruct-q5_0_GSM8K_2024-03-06_23-09-31_seed_1337_CoT_all samples.txt"
 
 file_1_data = read_and_extract_questions_and_results(file_1_path)
 file_2_data = read_and_extract_questions_and_results(file_2_path)
