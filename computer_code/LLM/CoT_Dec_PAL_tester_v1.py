@@ -55,6 +55,12 @@ from sympy.parsing.sympy_parser import parse_expr, standard_transformations, imp
 # reply or to choose one and generate the response, also in a single reply).
 
 #################
+# venv          #
+#################
+# Remember to create a virtual environment, install the packages, and activate it.
+# In my case: source ./tensorflow-metal-test/bin/activate (from v2 folder)
+
+#################
 # Configuration #
 #################
 MODEL_BASE_PATH = "llama.cpp/models/" # Path to the LLM models
