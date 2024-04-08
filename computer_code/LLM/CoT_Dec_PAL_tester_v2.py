@@ -32,7 +32,7 @@ from utils.v2.utils import extract_and_format_value, load_exemplars, save_result
 
 # Organization also improves:
 # /config/v2/config.py: Contains the configuration for the script.
-# /methods/v2: Contains the methods to run the LLM (CoT, Dec, PAL) and the Decider.
+# /methods/v2: Contains the methods to run the LLM (CoT, Dec, PAL) and an LLM Decider.
 # /utils/v2/utils.py: Contains utility functions to load exemplars, save results, and select the best response.
 
 # To run the LLM, the script uses the Llama C++ library and the Llama Python wrapper (you can choose which one to use).
