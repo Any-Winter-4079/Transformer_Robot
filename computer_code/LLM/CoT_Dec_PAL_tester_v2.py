@@ -45,6 +45,12 @@ from utils.v2.utils import extract_and_format_value, load_exemplars, save_result
 # so they are not the exact type of questions the original GSM8K dataset has, but they are similar enough to test the models.
 # /datasets/custom_gsm8k.json: Contains the custom GSM8K dataset.
 
+#################
+# venv          #
+#################
+# Remember to create a virtual environment, install the packages, and activate it.
+# In my case: source ./tensorflow-metal-test/bin/activate (from v2 folder)
+
 # Create the save folder if it doesn't exist
 if not os.path.exists(SAVE_FOLDER):
     os.makedirs(SAVE_FOLDER)
