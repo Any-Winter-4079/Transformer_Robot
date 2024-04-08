@@ -50,7 +50,7 @@ from sympy.parsing.sympy_parser import parse_expr, standard_transformations, imp
 # your "CoT" and "PAL" exemplars being concatenated make sense, for example.
 # In the exemplars folder, you can see some are 8-shot, some are 4-shot, some are 4-shot positive and
 # 4-shot negative, some ask the LLM to answer within the file itself, which is why if you concatenate
-# I'd suggest you to create a new exemplar per method you want to concatenate
+# I'd suggest you to create a new exemplars file per method you want to concatenate
 # (to ask the LLM to generate solutions in ALL formats in the same
 # reply or to choose one and generate the response, also in a single reply).
 
