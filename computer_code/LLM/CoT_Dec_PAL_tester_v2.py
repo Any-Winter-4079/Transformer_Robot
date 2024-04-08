@@ -8,6 +8,7 @@ from methods.v2.chain_of_thought import run_cot
 from methods.v2.declarative import run_declarative
 from utils.v2.utils import extract_and_format_value, load_exemplars, save_results, select_mode_or_sample
 
+#################
 # Description   #
 #################
 # The script is v2 of the LLM tester for the GSM8K dataset, CoT_Dec_PAL_tester_v1.py.
