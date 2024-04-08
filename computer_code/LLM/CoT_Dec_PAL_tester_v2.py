@@ -13,9 +13,9 @@ from utils.v2.utils import extract_and_format_value, load_exemplars, save_result
 #################
 # The script is v2 of the LLM tester for the GSM8K dataset, CoT_Dec_PAL_tester_v1.py.
 # This version improves:
-# CoT: 0.593 (1337 seed) -> 0.719 (1337 seed) using 5-iter SC (Self-Consistency) [Fastest per iteration].
+# CoT: 0.593 (1337 seed) -> 0.719 using 5-iter SC (Self-Consistency) [Fastest per iteration].
 # Dec: 0.553 (1337 seed) -> 0.572 (1337 seed) using more roubust SymPy equations extraction.
-# PAL: 0.679 (1337 seed) -> 0.782 (1337 seed) using 5-iter SC (Self-Consistency) [Best result].
+# PAL: 0.679 (1337 seed) -> 0.782 using 5-iter SC (Self-Consistency) [Best result].
 # You can choose one or more methods to test, each with one or more iterations (seeds) using SC.
 # For example, you can test the PAL method with 5 iterations (seeds) using SC, or the PAL method with 3 iterations (seeds)
 # and the CoT method with 2 iterations (seeds) using SC.
