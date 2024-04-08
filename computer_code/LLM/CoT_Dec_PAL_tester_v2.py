@@ -8,13 +8,41 @@ from methods.v2.chain_of_thought import run_cot
 from methods.v2.declarative import run_declarative
 from utils.v2.utils import extract_and_format_value, load_exemplars, save_results, select_mode_or_sample
 
-#################
 # Description   #
 #################
-# This script tests the LLM on the GSM8K dataset using the Chain of Thought, Program-aided Language Models, and Declarative methods.
-# To run the LLM, the script uses the Llama C++ library and the Llama Python wrapper.
+# The script is v2 of the LLM tester for the GSM8K dataset, CoT_Dec_PAL_tester_v1.py.
+# This version improves:
+# CoT: 0.593 (1337 seed) -> 0.719 (1337 seed) using 5-iter SC (Self-Consistency) [Fastest per iteration].
+# Dec: 0.553 (1337 seed) -> 0.572 (1337 seed) using more roubust SymPy equations extraction.
+# PAL: 0.679 (1337 seed) -> 0.782 (1337 seed) using 5-iter SC (Self-Consistency) [Best result].
+# You can choose one or more methods to test, each with one or more iterations (seeds) using SC.
+# For example, you can test the PAL method with 5 iterations (seeds) using SC, or the PAL method with 3 iterations (seeds)
+# and the CoT method with 2 iterations (seeds) using SC.
+# Dec(with Simpy) is not tested with SC in my results because it is slower than the other methods (but it could be done).
+
+# /results: Contains the results of the tests (starting with v2).
+# Earlier versions do not, but later versions have the decider's way of selecting the answer added in the log, from:
+# unanimous (all SC iterations agree on the same answer), sampling (no SC iteration agrees on the same answer,
+# or there is a tied-mode, so sampling is used), or mode (there is a most common answer, so that one is used).
+# Early exiting is not implemented (for example if already 3 out of 5 agree), but is planned for the next version.
+# There exists a fourth way to decide implemented (Decider.py), via LLM, but did not work well, as it chose
+# answers outside the given pool of options, so it is not used in the results. There is a way to constrain the
+# LLM to a set of options, and that might be the way to go for the Decider, but it is not implemented yet.
+
+# Organization also improves:
+# /config/v2/config.py: Contains the configuration for the script.
+# /methods/v2: Contains the methods to run the LLM (CoT, Dec, PAL) and the Decider.
+# /utils/v2/utils.py: Contains utility functions to load exemplars, save results, and select the best response.
+
+# To run the LLM, the script uses the Llama C++ library and the Llama Python wrapper (you can choose which one to use).
 # https://github.com/ggerganov/llama.cpp
 # https://github.com/abetlen/llama-cpp-python
+# Make sure to have llama.cpp in /LLM as well as have llama-cpp-python installed.
+
+# A custom GSM8K dataset is created, so far with only 40 pairs of questions and answers, to test models alternatively, as contamination
+# from GSM8K leaking into the training data might have tainted some models. The questions include set theory, probability, and so on,
+# so they are not the exact type of questions the original GSM8K dataset has, but they are similar enough to test the models.
+# /datasets/custom_gsm8k.json: Contains the custom GSM8K dataset.
 
 # Create the save folder if it doesn't exist
 if not os.path.exists(SAVE_FOLDER):
