@@ -54,13 +54,13 @@ def parse_and_save_hierarchy(text, base_file_path=BASE_FILE_PATH):
             "subItems": children
         }
         
-        file_path = f'./{base_file_path}/{root_index_base}.json'
+        file_path = f'{base_file_path}/{root_index_base}.json'
         with open(file_path, 'w') as json_file:
             json.dump(hierarchy, json_file, indent=4)
         
-        return file_path
+        print(f"JSON saved to {file_path}")
     else:
-        return None
+        print("Failed to parse the hierarchy.")
 
 if __name__ == "__main__":
     index_text = '''
@@ -103,5 +103,4 @@ if __name__ == "__main__":
 1.7.2 Early Stages of the Solar System
 1.7.3 Evolution of the Planets
     '''
-    saved_file_path = parse_and_save_hierarchy(index_text)
-    print(f"JSON saved to {saved_file_path}")
+    parse_and_save_hierarchy(index_text)
