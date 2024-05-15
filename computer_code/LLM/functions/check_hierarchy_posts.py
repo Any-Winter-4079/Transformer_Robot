@@ -4,7 +4,7 @@ import json
 #################
 # Description   #
 #################
-# This script checks for existing posts (in the posts directory) for a given (JSON) hierarchy file.
+# This script checks for the existance of posts for the leaf nodes in a hierarchy.
 
 #################
 # Example       #
@@ -47,7 +47,9 @@ import json
 # Remember to create a virtual environment, install the packages, and activate it.
 # In my case: source ./tensorflow-metal-test/bin/activate (from v2 folder)
 
+# Function to get leaf nodes from a hierarchy
 def get_leaf_nodes(node):
+    """Get leaf nodes from a hierarchy."""
     leaf_nodes = []
     if "subItems" in node:
         for sub_node in node["subItems"]:
@@ -56,6 +58,7 @@ def get_leaf_nodes(node):
         leaf_nodes.append(node)
     return leaf_nodes
 
+# Function to check existing posts for the leaf nodes in a hierarchy
 def check_existing_posts(leaf_nodes, posts_dir):
     existing_posts = []
     missing_posts = []
@@ -66,7 +69,14 @@ def check_existing_posts(leaf_nodes, posts_dir):
             existing_posts.append(node)
         else:
             missing_posts.append(node)
-    return existing_posts, missing_posts
+
+    print("Existing posts:")
+    for post in existing_posts:
+        print(f"- {post['name']}")
+
+    print("\nMissing posts:")
+    for post in missing_posts:
+        print(f"- {post['name']}")
 
 if __name__ == "__main__":
     hierarchy_file = "../Transformer.codes/hierarchy/1.json"
@@ -77,12 +87,4 @@ if __name__ == "__main__":
 
     leaf_nodes = get_leaf_nodes(hierarchy)
 
-    existing_posts, missing_posts = check_existing_posts(leaf_nodes, posts_dir)
-
-    print("Existing posts:")
-    for post in existing_posts:
-        print(f"- {post['name']}")
-
-    print("\nMissing posts:")
-    for post in missing_posts:
-        print(f"- {post['name']}")
+    check_existing_posts(leaf_nodes, posts_dir)
