@@ -14,10 +14,10 @@ import json
 #################
 # Configuration #
 #################
-BASE_FILE_PATH = "../Transformer.codes/hierarchy"
+BASE_FILE_PATH = "../Transformer.codes/hierarchies"
 
 # Parse the text-based hierarchy and save it as a JSON file
-def parse_and_save_hierarchy(text, base_file_path=BASE_FILE_PATH):
+def parse_and_save_hierarchy(text):
     """Parse the text-based hierarchy and save it as a JSON file."""
     lines = text.strip().split('\n')
     items = [line.strip().split(' ', 1) for line in lines if line.strip()]
@@ -54,7 +54,7 @@ def parse_and_save_hierarchy(text, base_file_path=BASE_FILE_PATH):
             "subItems": children
         }
         
-        file_path = f'{base_file_path}/{root_index_base}.json'
+        file_path = f'{BASE_FILE_PATH}/{root_index_base}.json'
         with open(file_path, 'w') as json_file:
             json.dump(hierarchy, json_file, indent=4)
         
