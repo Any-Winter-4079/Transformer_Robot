@@ -7,8 +7,10 @@ import json
 # This script checks for the existance of posts for the leaf nodes in a hierarchy.
 
 #################
-# Example       #
+# Sample result #
 #################
+# For 1.json:
+
 # Existing posts:
 # - Earth
 # - The Nebular Hypothesis
@@ -16,36 +18,19 @@ import json
 # Missing posts:
 # - Structure of the Sun
 # - Solar Activity
-# - Importance of the Sun
-# - Mercury
-# - Venus
-# - Mars
-# - Jupiter
-# - Saturn
-# - Uranus
-# - Neptune
-# - Pluto
-# - Ceres
-# - Eris
-# - Makemake
-# - Haumea
-# - The Asteroid Belt
-# - Composition of Asteroids
-# - Notable Asteroids
-# - Structure of Comets
-# - Types of Comets
-# - Famous Comets
-# - Earth's Moon
-# - The Galilean Moons
-# - Other Notable Moons
-# - Early Stages of the Solar System
-# - Evolution of the Planets
+# ...
 
 #################
 # venv          #
 #################
 # Remember to create a virtual environment, install the packages, and activate it.
 # In my case: source ./tensorflow-metal-test/bin/activate (from v2 folder)
+
+#################
+# Configuration #
+#################
+HIERARCHIES_BASE_PATH = "../Transformer.codes/hierarchies/"
+POSTS_DIR = "../Transformer.codes/posts/"
 
 # Function to get leaf nodes from a hierarchy
 def get_leaf_nodes(node):
@@ -58,13 +43,20 @@ def get_leaf_nodes(node):
         leaf_nodes.append(node)
     return leaf_nodes
 
-# Function to check existing posts for the leaf nodes in a hierarchy
-def check_existing_posts(leaf_nodes, posts_dir):
+# Function to check missing hierarchy posts
+def check_existing_and_missing_hierarchy_posts(hierarchy_file_name):
+    """Check existing and missing hierarchy posts."""
+
+    with open(hierarchy_file_name, "r") as f:
+        hierarchy = json.load(f)
+
+    leaf_nodes = get_leaf_nodes(hierarchy)
+
     existing_posts = []
     missing_posts = []
     for node in leaf_nodes:
         post_name = node["href"].split("/")[-1]
-        post_path = os.path.join(posts_dir, post_name + ".js")
+        post_path = os.path.join(POSTS_DIR, post_name + ".js")
         if os.path.exists(post_path):
             existing_posts.append(node)
         else:
@@ -79,12 +71,6 @@ def check_existing_posts(leaf_nodes, posts_dir):
         print(f"- {post['name']}")
 
 if __name__ == "__main__":
-    hierarchy_file = "../Transformer.codes/hierarchy/1.json"
-    posts_dir = "../Transformer.codes/posts/"
+    hierarchy_path = f"{HIERARCHIES_BASE_PATH}/1.json"
 
-    with open(hierarchy_file, "r") as f:
-        hierarchy = json.load(f)
-
-    leaf_nodes = get_leaf_nodes(hierarchy)
-
-    check_existing_posts(leaf_nodes, posts_dir)
+    check_existing_and_missing_hierarchy_posts(hierarchy_path)
