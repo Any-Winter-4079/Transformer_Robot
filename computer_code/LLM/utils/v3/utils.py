@@ -159,8 +159,8 @@ def run_llm(message, stop_list, cpp=False, iteration=0):
                 temp_prompt_file.write(message)
                 temp_prompt_file_path = temp_prompt_file.name
             command = [
-                "bash", "-c",
-                f"cd {LLAMA_BASE_PATH} && ./main -m {str(MODEL_PATHS[MODEL_TO_TEST])} -n {max_tokens} -e -s {seed+iteration} -f {temp_prompt_file_path} -c {CONTEXT_WINDOWS[MODEL_TO_TEST]} -ngl -1 -r {STOP} --prompt-cache prompt_cache_{MODEL_TO_TEST}"
+                    "bash", "-c",
+                    f"{LLAMA_BASE_PATH}/main -m {str(MODEL_PATHS[MODEL_TO_TEST])} -n {max_tokens} -e -s {seed+iteration} -f {temp_prompt_file_path} -c {CONTEXT_WINDOWS[MODEL_TO_TEST]} -ngl -1 -r {STOP} --prompt-cache prompt_cache_{MODEL_TO_TEST}"
             ]
             # command = [
             #     "bash", "-c",
