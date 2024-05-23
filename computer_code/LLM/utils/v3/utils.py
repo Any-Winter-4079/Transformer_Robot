@@ -45,7 +45,7 @@ def load_exemplars():
             if "0Shot" in method_to_test:
                 exemplar_contents["0Shot"] = extract_exemplars(file)
             elif "Decl" in method_to_test:
-                exemplar_contents["Decl"] = extract_exemplars(file)
+                exemplar_contents["Decl"] = extract_exemplars(file)f
             elif "CoTR" in method_to_test:
                 exemplar_contents["CoTR"] = extract_exemplars(file)
             elif "CoT" in method_to_test:
@@ -160,7 +160,7 @@ def run_llm(message, stop_list, cpp=False, iteration=0):
                 temp_prompt_file_path = temp_prompt_file.name
             command = [
                 "bash", "-c",
-                f"cd {LLAMA_BASE_PATH} && make -j && ./main -m {str(MODEL_PATHS[MODEL_TO_TEST])} -n {max_tokens} -e -s {seed+iteration} -f {temp_prompt_file_path} -c {CONTEXT_WINDOWS[MODEL_TO_TEST]} -ngl -1 -r {STOP} --prompt-cache prompt_cache_{MODEL_TO_TEST}"
+                f"cd {LLAMA_BASE_PATH} && ./main -m {str(MODEL_PATHS[MODEL_TO_TEST])} -n {max_tokens} -e -s {seed+iteration} -f {temp_prompt_file_path} -c {CONTEXT_WINDOWS[MODEL_TO_TEST]} -ngl -1 -r {STOP} --prompt-cache prompt_cache_{MODEL_TO_TEST}"
             ]
             # command = [
             #     "bash", "-c",
