@@ -45,7 +45,7 @@ def load_exemplars():
             if "0Shot" in method_to_test:
                 exemplar_contents["0Shot"] = extract_exemplars(file)
             elif "Decl" in method_to_test:
-                exemplar_contents["Decl"] = extract_exemplars(file)f
+                exemplar_contents["Decl"] = extract_exemplars(file)
             elif "CoTR" in method_to_test:
                 exemplar_contents["CoTR"] = extract_exemplars(file)
             elif "CoT" in method_to_test:
@@ -136,6 +136,7 @@ def save_results(data_to_save, save_path, duration, n_correct):
 def run_llm(message, stop_list, cpp=False, iteration=0):
     """Run the LLM with the given message."""
     start_time = time.time()
+    print(f"Running LLM with message: {message}")
     if not cpp:
         try:
             prediction = llm(
@@ -161,13 +162,15 @@ def run_llm(message, stop_list, cpp=False, iteration=0):
             command = [
                     "bash", "-c",
                     f"{LLAMA_BASE_PATH}/main -m {str(MODEL_PATHS[MODEL_TO_TEST])} -n {max_tokens} -e -s {seed+iteration} -f {temp_prompt_file_path} -c {CONTEXT_WINDOWS[MODEL_TO_TEST]} -ngl -1 -r {STOP} --prompt-cache prompt_cache_{MODEL_TO_TEST}"
-            ]
+                ]
             # command = [
             #     "bash", "-c",
             #     f"make -j && {LLAMA_BASE_PATH}/parallel -m {str(MODEL_PATHS[MODEL_TO_TEST])} -n {max_tokens} -s {seed+iteration} -f {temp_prompt_file_path} -c {CONTEXT_WINDOWS[MODEL_TO_TEST]} -ngl -1 -np 4 -ns 4 -cb -b 512 -r 'Q:' --prompt-cache prompt_cache"
             # ]
             # ./parallel -m models/mixtral-8x7b-instruct-v0.1/mixtral-8x7b-instruct-q5_0.gguf -n 1024 -t 1 -ngl -1 -c 1024 -b 512 -s 1 -np 4 -ns 4 -cb -p "Are you familiar with the Special Theory of Relativity and can you explain it to me?"
             result = subprocess.run(command, cwd=LLAMA_BASE_PATH, capture_output=True, text=True)
+            assistant_start = "<|assistant|>"
+            result.stdout = result.stdout.split(assistant_start)[-1]
             result.stdout = result.stdout.replace(message, "").replace("Q:", "").strip()
             os.remove(temp_prompt_file_path)
 
