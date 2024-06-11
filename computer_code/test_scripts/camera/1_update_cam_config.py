@@ -105,7 +105,7 @@ def main():
     for _ in range(NUM_ITERATIONS):
 
         if stream_to_recover and stream_active:
-            print("Stream recovered.")
+            print("Stream is being recovered.")
             update_camera_config(JPEG_QUALITY, FRAME_SIZE)
             stream_to_recover = False
             stream_active = False
