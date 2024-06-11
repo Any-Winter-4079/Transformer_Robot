@@ -223,7 +223,7 @@ def main():
 
     while True:
         if stream_to_recover and stream_active:
-            print("Stream recovered.")
+            print("Stream is being recovered.")
             update_camera_config(esp32_left_config_url, JPEG_QUALITY, FRAME_SIZE)
             update_camera_config(esp32_right_config_url, JPEG_QUALITY, FRAME_SIZE)
             stream_to_recover = False
