@@ -11,6 +11,7 @@ import mediapipe as mp
 # Description   #
 #################
 # This is a program to continuously calculate the depth map from a pair of stereo images, IF a face is detected.
+# In other words, the use case is to calculate the depth map only when something interesting enters the scene.
 
 #################
 # Customization #
