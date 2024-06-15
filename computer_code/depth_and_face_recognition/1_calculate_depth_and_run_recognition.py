@@ -76,7 +76,7 @@ STREAM_TIMEOUT = 3 # seconds
 # Stereo
 STEREO_MAPS_DIR = '../undistortion_and_rectification/stereo_maps'
 # Object depth
-USE_IQR = True
+ALLOWED_DEPTH = 0.875
 LABELS = ["bottle"]
 STEREO_BLOCK_SIZE = 11 # Must be odd
 MIN_DISPARITY = 8
@@ -184,7 +184,7 @@ def on_disp12max_diff_change(val):
 
 cv2.namedWindow("Stereo depth")
 cv2.createTrackbar("Min Disp.", "Stereo depth", MIN_DISPARITY, 32, on_min_disparity_change)
-cv2.createTrackbar("Num Disp.", "Stereo depth", NUM_DISPARITIES, 16 * 10, on_num_disparities_change)
+cv2.createTrackbar("Num Disp.", "Stereo depth", NUM_DISPARITIES, 16 * 16, on_num_disparities_change)
 cv2.createTrackbar("Block Size", "Stereo depth", STEREO_BLOCK_SIZE, 13, on_block_size_change)
 cv2.createTrackbar("Speckle Win", "Stereo depth", SPECKLE_WINDOW_SIZE, 200, on_speckle_window_size_change)
 cv2.createTrackbar("Speckle Range", "Stereo depth", SPECKLE_RANGE, 100, on_speckle_range_change)
@@ -309,24 +309,20 @@ def get_object_bounding_boxes(image, label_filter=None):
             filtered_labels.append(classes[cls])
     return filtered_bboxes, filtered_labels
 
-# Function to calculate the average depth within a bounding box using IQR
-def calculate_average_depth(points_3D, bbox, use_iqr=True):
-    """Calculate the average depth within a bounding box using either all pixels or the interquartile range."""
+# Function to calculate the average depth within a bounding box
+def calculate_average_depth(points_3D, bbox, allowed_depth=0.95):
+    """Calculate the average depth within a bounding box."""
     x, y, w, h = bbox
-    face_region = points_3D[y:y+h, x:x+w]
-    valid_depths = face_region[:, :, 2]
+    obj_region = points_3D[y:y+h, x:x+w]
+    valid_depths = obj_region[:, :, 2]
     valid_depths = valid_depths[np.isfinite(valid_depths)]
     if valid_depths.size == 0:
         return None
-    if use_iqr:
-        q1 = np.percentile(valid_depths, 25)
-        q3 = np.percentile(valid_depths, 75)
-        iqr_depths = valid_depths[(valid_depths >= q1) & (valid_depths <= q3)]
-        if iqr_depths.size == 0:
-            return None
-        average_depth = np.mean(iqr_depths)
-    else:
-        average_depth = np.mean(valid_depths)
+    max_depth = np.max(valid_depths)
+    filtered_depths = valid_depths[valid_depths <= allowed_depth * max_depth]
+    if filtered_depths.size == 0:
+        return None
+    average_depth = np.mean(filtered_depths)
     return average_depth
 
 # Function to capture a pair of images
@@ -459,7 +455,7 @@ def main():
                     cv2.putText(disp_norm, label, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
                     cv2.rectangle(img_left_rectified, (x, y), (x + w, y + h), (0, 255, 0), 2)
                     cv2.putText(img_left_rectified, label, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
-                    average_object_depth = calculate_average_depth(points_3D, bbox, use_iqr=USE_IQR)
+                    average_object_depth = calculate_average_depth(points_3D, bbox, allowed_depth=ALLOWED_DEPTH)
                     if average_object_depth is not None:
                         cv2.putText(disp_norm, f"Depth: {average_object_depth:.2f}", (x, y + h + 15),
                                     cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
