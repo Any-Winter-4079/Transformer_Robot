@@ -34,7 +34,7 @@ def extract_exemplars(file):
         exemplars = match.group(1)
         return exemplars
     else:
-        return "No exemplars found."
+        return file_content
     
 # Function to load the exemplar contents for the specified methods
 def load_exemplars():
