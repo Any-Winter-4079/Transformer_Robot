@@ -136,7 +136,7 @@ def save_results(data_to_save, save_path, duration, n_correct):
 def run_llm(message, stop_list, cpp=False, iteration=0):
     """Run the LLM with the given message."""
     start_time = time.time()
-    print(f"Running LLM with message: {message}")
+    # print(f"Running LLM with message: {message}")
     if not cpp:
         try:
             prediction = llm(
