@@ -18,6 +18,7 @@ MODEL_PATHS = {
     "mixtral-8x7b-instruct-q5_0": MODEL_BASE_PATH / "mixtral-8x7b-instruct-v0.1/mixtral-8x7b-instruct-q5_0.gguf",
     "mixtral-8x7b-instruct-Q4_K_M": MODEL_BASE_PATH / "mixtral-8x7b-instruct-v0.1/mixtral-8x7b-instruct-Q4_K_M.gguf",
     "mixtral-8x7b-instruct-Q3_K_M": MODEL_BASE_PATH / "mixtral-8x7b-instruct-v0.1/mixtral-8x7b-instruct-Q3_K_M.gguf",
+    "phi-3-mini-4k-instruct-q4": MODEL_BASE_PATH / "Phi-3-mini-4k-instruct-gguf/Phi-3-mini-4k-instruct-q4.gguf",
     "Cerebrum-1.0-8x7b": MODEL_BASE_PATH / "Cerebrum-1.0-8x7b/Cerebrum-1.0-8x7b-Q4_K_M.gguf",
     "mistral-7b-instruct-v0.2.Q8_0": MODEL_BASE_PATH / "mistral-7b-instruct-v0.2/mistral-7b-instruct-v0.2.Q8_0.gguf",
     "70b-code-q4": MODEL_BASE_PATH / "70b-code/codellama-70b-python.Q4_K_M.gguf",
@@ -37,6 +38,7 @@ CONTEXT_WINDOWS = {
     "mixtral-8x7b-instruct-q5_0": 32768,
     "mixtral-8x7b-instruct-Q4_K_M": 32768,
     "mixtral-8x7b-instruct-Q3_K_M": 32768,
+    "phi-3-mini-4k-instruct-q4": 4096,
     "Cerebrum-1.0-8x7b": 32768,
     "mistral-7b-instruct-v0.2.Q8_0": 4096,
     "70b-code-q4": 4096,
@@ -82,13 +84,13 @@ SAVE_FOLDER = (Path(__file__).parent / "../../results").resolve() # Path to the 
 # Choices       #
 #################
 MODEL_TO_TEST = "mixtral-8x7b-instruct-q5_0" # Model to test
-N_SAMPLES = None # None for all samples
+N_SAMPLES = 1 # None for all samples
 PAL_TIMEOUT = 5 # Timeout for the PAL method
 CPP = False # Run the LLM with llama-cpp vs. llama-cpp-python
 #################
 # Methods       #
 #################
-METHODS_TO_PICK_FROM = ["PAL"]
+METHODS_TO_PICK_FROM = ["CoT"]
 #################
 # Decider       #
 #################
@@ -99,7 +101,7 @@ DECIDER_PATH = EXEMPLARS_BASE_PATH / "GSM8K_Decider.txt"
 #################
 seed = 1337 # Seed for reproducibility
 max_tokens = 1024 # Maximum output length for the LLM
-N_ITERATIONS = 5 # Number of iterations for the LLM (using different seeds)
+N_ITERATIONS = 1 # Number of iterations for the LLM (using different seeds)
 # llama-cpp-python
 llm = Llama(
             model_path=str(MODEL_PATHS[MODEL_TO_TEST]),
