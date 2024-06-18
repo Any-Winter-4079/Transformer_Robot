@@ -188,7 +188,7 @@ MODEL_TEMPLATES = {
         # unless they all have the same USER_LEAD which is what is used here as stopper.
         # In other words you can mix CoTR with DecR and PALR for SC but not CoTR with Dec/PAL
     },
-    "cererum-1.0-8x7b": {
+    "cerebrum-1.0-8x7b": {
         "system_start": "",
         "system_message": "",
         "system_end": "",
