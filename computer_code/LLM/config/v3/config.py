@@ -14,7 +14,7 @@ CPP = False # Run the LLM with llama-cpp vs. llama-cpp-python
 METHODS_AND_ITERATIONS_PER_METHOD = {
     # # Note order matters if you use early stopping
     # "0Shot": 1,
-    "CoT": 1,
+    "CoTpy": 1,
 }
 EARLY_STOPPING = 3 # Stop when N iterations agree on the same answer
 #################
@@ -127,6 +127,7 @@ EXEMPLARS_PATHS = {
     "PALassert": EXEMPLARS_BASE_PATH / "GSM8K_Program_Aided_LM_Custom-Assert.txt", # Program-aided Language Models
     "PALR": EXEMPLARS_BASE_PATH / "GSM8k_Program_Aided_LM_Principles_rephrase.txt", # Program-aided Language Models
     "CoT": EXEMPLARS_BASE_PATH / "GSM8K_Chain_of_Thought_8-shot.txt", # Chain-of-Thought [https://arxiv.org/abs/2201.11903]
+    "CoTpy": EXEMPLARS_BASE_PATH / "GSM8k_Chain_of_Thought-8-shot.py", # Chain-of-Thought [https://arxiv.org/abs/2201.11903]
     "CoTR": EXEMPLARS_BASE_PATH / "GSM8K_Chain_of_Thought_8-shot_rephrase.py", # Chain-of-Thought and EchoPrompt [https://arxiv.org/abs/2309.10687] / Rephrase and Respond [https://arxiv.org/abs/2311.04205]
     "Decl8": EXEMPLARS_BASE_PATH / "GSM8K_Declarative_8-shot.txt", # Declarative (SymPy) [https://arxiv.org/abs/2304.09102]
     "Decl3P": EXEMPLARS_BASE_PATH / "GSM8K_Declarative_3-shot_Principles.txt", # Declarative (SymPy)
@@ -190,16 +191,13 @@ MODEL_TEMPLATES = {
     },
     "cerebrum-1.0-8x7b": {
         "system_start": "",
-        "system_message": "",
+        "system_message": "A chat between a user and a thinking artificial intelligence assistant. The assistant describes its thought process and gives helpful and detailed answers to the user's questions.",
         "system_end": "",
-        "user_start": "",
-        "user_end": "\n",
-        "assistant_start": "",
+        "user_start": "User:",
+        "user_end": "",
+        "assistant_start": "AI:",
         "assistant_end": "",
-        "stop": "Q:\n" # hack, but depends on the method
-        # so we must update this for each method we want to test and can't test multiple methods at once
-        # unless they all have the same USER_LEAD which is what is used here as stopper.
-        # In other words you can mix CoTR with DecR and PALR for SC but not CoTR with Dec/PAL
+        "stop": "User:"
     },
     "phi-3": {
         "system_start": "<|system|>\n",
