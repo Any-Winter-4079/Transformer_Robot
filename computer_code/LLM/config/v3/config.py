@@ -6,9 +6,9 @@ from datasets import load_dataset
 #################
 # Choices       #
 #################
-MODEL_TO_TEST = "cerebrum-1.0-8x7b" # Model to test
+MODEL_TO_TEST = "metamath-mistral-7b" # Model to test
 TEMP = 0 # Temperature for the LLM
-N_SAMPLES = 2 # None for all samples
+N_SAMPLES = 4 # None for all samples
 PAL_TIMEOUT = 5 # Timeout for the PAL method
 CPP = False # Run the LLM with llama-cpp vs. llama-cpp-python
 METHODS_AND_ITERATIONS_PER_METHOD = {
@@ -160,7 +160,7 @@ MODEL_TEMPLATES = {
         "assistant_end": "",
         "stop": "First rephrase, then answer, the following problem:\n" # hack, but depends on the method
         # so we must update this for each method we want to test and can't test multiple methods at once
-        # unless they all have the same USER_LEAD which is what is used here as stopper.
+        # unless they all share the same template.
         # In other words you can mix CoTR with DecR and PALR for SC but not CoTR with Dec/PAL
     },
     "mistral-7b": {
@@ -173,21 +173,18 @@ MODEL_TEMPLATES = {
         "assistant_end": "",
         "stop": "First rephrase, then answer, the following problem:\n" # hack, but depends on the method
         # so we must update this for each method we want to test and can't test multiple methods at once
-        # unless they all have the same USER_LEAD which is what is used here as stopper.
+        # unless they all share the same template.
         # In other words you can mix CoTR with DecR and PALR for SC but not CoTR with Dec/PAL
     },
     "metamath-mistral-7b": {
         "system_start": "",
-        "system_message": "",
-        "system_end": "",
-        "user_start": "",
+        "system_message": "Below is an instruction that describes a task. Write a response that appropriately completes the request.",
+        "system_end": "\n",
+        "user_start": "### Instruction:",
         "user_end": "\n",
-        "assistant_start": "",
-        "assistant_end": "",
-        "stop": "Q:\n" # hack, but depends on the method
-        # so we must update this for each method we want to test and can't test multiple methods at once
-        # unless they all have the same USER_LEAD which is what is used here as stopper.
-        # In other words you can mix CoTR with DecR and PALR for SC but not CoTR with Dec/PAL
+        "assistant_start": "### Response: Let's think step by step.",
+        "assistant_end": "\n",
+        "stop": "### Instruction:"
     },
     "cerebrum-1.0-8x7b": {
         "system_start": "",
