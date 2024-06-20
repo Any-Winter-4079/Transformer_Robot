@@ -6,15 +6,15 @@ from datasets import load_dataset
 #################
 # Choices       #
 #################
-MODEL_TO_TEST = "metamath-mistral-7b" # Model to test
+MODEL_TO_TEST = "cerebrum-1.0-8x7b" # Model to test
 TEMP = 0 # Temperature for the LLM
-N_SAMPLES = 4 # None for all samples
+N_SAMPLES = None # None for all samples
 PAL_TIMEOUT = 5 # Timeout for the PAL method
 CPP = False # Run the LLM with llama-cpp vs. llama-cpp-python
 METHODS_AND_ITERATIONS_PER_METHOD = {
     # # Note order matters if you use early stopping
     # "0Shot": 1,
-    "CoTpy": 1,
+    "PALpy": 1,
 }
 EARLY_STOPPING = 3 # Stop when N iterations agree on the same answer
 #################
@@ -124,6 +124,7 @@ EXEMPLARS_BASE_PATH =  (Path(__file__).parent / "../../exemplars/").resolve() # 
 EXEMPLARS_PATHS = {
     "0Shot": EXEMPLARS_BASE_PATH / "GSM8k_0-shot.py",
     "PAL": EXEMPLARS_BASE_PATH / "GSM8k_Program_Aided_LM_Principles.txt", # Program-aided Language Models [https://arxiv.org/pdf/2211.10435.pdf]
+    "PALpy": EXEMPLARS_BASE_PATH / "GSM8K_Program_Aided_LM_Principles.py", # Program-aided Language Models [https://arxiv.org/pdf/2211.10435.pdf]
     "PALassert": EXEMPLARS_BASE_PATH / "GSM8K_Program_Aided_LM_Custom-Assert.txt", # Program-aided Language Models
     "PALR": EXEMPLARS_BASE_PATH / "GSM8k_Program_Aided_LM_Principles_rephrase.txt", # Program-aided Language Models
     "CoT": EXEMPLARS_BASE_PATH / "GSM8K_Chain_of_Thought_8-shot.txt", # Chain-of-Thought [https://arxiv.org/abs/2201.11903]
@@ -142,10 +143,12 @@ SAVE_FOLDER = (Path(__file__).parent / "../../results").resolve() # Path to the 
 USER_LEAD_METHOD_TEMPLATES = {
     "0Shot": "Use reasoning to solve the following problem, writing 'The answer is {number}.' at the end. Don't write any other numerical value after 'The answer is {number}.'.\n",
     "CoT": "",
+    "CoTpy": "",
     "CoTR": "\nFirst rephrase, then answer, the following problem:\n",
     "Dec": "",
     "DecR": "\nFirst rephrase, then answer, the following problem:\n",
     "PAL": "",
+    "PALpy": "",
     "PALR": "\nFirst rephrase, then answer, the following problem:\n",
     "Decider": "",
 }
