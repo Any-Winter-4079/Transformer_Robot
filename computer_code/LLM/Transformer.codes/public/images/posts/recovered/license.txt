@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mini Simple Character (Free Demo + Animations)
+* source:	https://sketchfab.com/3d-models/mini-simple-character-free-demo-animations-ffcb3490d35148a5951d3b32d1e5a7cb
+* author:	joaobaltieri (https://sketchfab.com/joaobaltieri)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mini Simple Character (Free Demo + Animations)" (https://sketchfab.com/3d-models/mini-simple-character-free-demo-animations-ffcb3490d35148a5951d3b32d1e5a7cb) by joaobaltieri (https://sketchfab.com/joaobaltieri) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
