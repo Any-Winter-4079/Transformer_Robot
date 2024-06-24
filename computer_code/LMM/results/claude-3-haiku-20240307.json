@@ -1,0 +1,26 @@
+{
+    "input_images/arrow_left.png": {
+        "time": 3.5038399696350098,
+        "prompt_tokens": 520,
+        "completion_tokens": 100,
+        "message": "Given the image, which shows a blue lane with a red arrow pointing slightly to the right, the optimal next move would be to steer slightly to the right while maintaining a moderate speed. \n\nSpecifically, I would recommend setting the direction to \"right\" and the speed to around 150-180 on the 0-255 scale. This will allow me to follow the curve of the blue lane and stay centered within it, without veering too sharply in any one direction"
+    },
+    "input_images/left_turn.png": {
+        "time": 2.9533538818359375,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image, to stay centered on the blue lane, the optimal next move would be to steer slightly to the right and maintain a moderate speed. \n\nThe image shows the blue lane curving to the right, so steering slightly right would keep the robot centered and following the path. A moderate speed, perhaps in the range of 150-200, would allow the robot to safely navigate the curve while not going too fast or too slow.\n\nDriving straight ahead at this point"
+    },
+    "input_images/right_turn.png": {
+        "time": 3.3490731716156006,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image provided, it appears that the blue lane is curving slightly to the right. To remain centered on the lane, the best next move would be to steer gently to the right while maintaining a moderate speed.\n\nSpecifically, I would recommend the following:\n\nDirection: Slightly Right\nSpeed: 200\n\nThis would allow the robot to follow the curve of the lane and stay centered, without veering too far off course. The moderate speed of 200 "
+    },
+    "input_images/straight_ahead.png": {
+        "time": 4.436115980148315,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image provided, the best next move for the physical robot would be to proceed straight ahead at a moderate speed, around 150-200 on the 0-255 scale. \n\nThe image shows a clear blue lane running down the center of the brown floor. This indicates that continuing straight ahead while maintaining a position centered on the blue lane is the optimal path to follow. Turning left or right would risk straying off the designated lane.\n\nChoosing a moderate speed"
+    }
+}
