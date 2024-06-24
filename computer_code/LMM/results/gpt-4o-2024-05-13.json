@@ -1,0 +1,26 @@
+{
+    "input_images/arrow_left.png": {
+        "time": 3.9461817741394043,
+        "prompt_tokens": 575,
+        "completion_tokens": 100,
+        "message": "In the provided image, the blue lane splits, and a left turn is indicated by a red arrow. To stay centered on the blue lane, follow these steps:\n\n1. **Direction**: Turn left. The arrow indicates that you should follow the lane to the left.\n2. **Speed**: Adjust to a safe speed for turning. Assuming you generally move at a moderate pace, set your speed to around 100 - 150 (this depends on your normal speed during straight travel). This"
+    }, 
+    "input_images/left_turn.png": {
+        "time": 5.57682991027832,
+        "prompt_tokens": 405,
+        "completion_tokens": 100,
+        "message": "The image shows that the blue lane curves sharply to the left. To stay centered on the lane, you need to turn left.\n\n### Next Move:\n**Direction:** Left  \n**Speed:** 120 (moderate speed to adequately follow the sharp curve)\n\n### Why:\n- **Direction:** The blue lane curves to the left, necessitating a left turn to stay centered on the path.\n- **Speed:** A moderate speed of 120 allows for adequate control and precise maneuvering during the turn.\n\n"
+    },
+    "input_images/right_turn.png": {
+        "time": 6.347851037979126,
+        "prompt_tokens": 405,
+        "completion_tokens": 100,
+        "message": "To stay centered on the blue lane, you should turn in the direction that the lane curves. In this image, the lane is curving to the right. \n\nThus, your next move should be to steer right. Given that it is a fairly sharp curve, you should make a significant right turn but not too abrupt to avoid possibly missing the lane. A moderate speed is advisable to maintain control.\n\nSo, I recommend:\n- **Direction**: Right\n- **Speed**: 150\n\n"
+    },
+    "input_images/straight_ahead.png": {
+        "time": 7.9048120975494385,
+        "prompt_tokens": 405,
+        "completion_tokens": 100,
+        "message": "In this image, the blue lane is centered in the frame, indicating that you are correctly aligned with it. Therefore, you should continue moving straight ahead.\n\nFor speed, since there are no immediate curves or obstacles visible, you can proceed at a moderate speed, which I would suggest to be around 200. This allows you to advance quickly while still being able to adjust if changes in the lane's direction happen suddenly.\n\nSo, the next move should be:\n- Direction: Straight ahead\n- Speed"
+    }
+}
