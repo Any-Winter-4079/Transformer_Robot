@@ -1,0 +1,26 @@
+{
+    "input_images/arrow_left.png": {
+        "time": 7.656771898269653,
+        "prompt_tokens": 520,
+        "completion_tokens": 100,
+        "message": "Based on the image, I can see a blue lane or path on a brown floor or surface, along with a red arrow pointing to the left.\n\nTo stay centered on the blue lane while advancing, my recommendation would be:\n\nDirection: Slight left turn\nSpeed: Around 150-175 (moderate speed)\n\nThe reason for the slight left turn is that the blue lane appears to be curving or drifting slightly to the left from my current perspective. By making a"
+    },
+    "input_images/left_turn.png": {
+        "time": 5.184196949005127,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image provided, which shows a curved blue lane against a brown floor surface directly ahead, my recommendation would be to move straight ahead at a moderate speed of around 150-180.\n\nThe curved blue lane appears centered in the image, indicating that continuing straight ahead should keep me aligned with and following the lane properly. However, since the lane curves, I would not recommend moving at full speed initially to allow for minor corrections if needed as the curve progresses.\n\nBy proceeding straight"
+    },
+    "input_images/right_turn.png": {
+        "time": 5.534684896469116,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image provided, I can see a curved blue lane on a brown floor surface directly ahead. To stay centered on the blue lane while advancing, my recommendation would be:\n\nDirection: Straight ahead initially, then gradually turning right to follow the curve of the blue lane.\n\nSpeed: A moderate speed around 150 would be appropriate, allowing for adjustments as needed to negotiate the turn while staying centered on the lane.\n\nThe rationale is that the blue lane is curving"
+    },
+    "input_images/straight_ahead.png": {
+        "time": 9.13072681427002,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the provided image, the blue lane appears centered in front of me. To stay centered on the lane and continue advancing, my next move should be:\n\nDirection: Straight ahead\nSpeed: Moderate, let's say 150 out of 255\n\nThe reason for going straight ahead is that the blue lane is directly aligned with my current path, so maintaining my current heading will keep me centered on the lane.\n\nA moderate speed of 150 allows me to proceed forward"
+    }
+}
