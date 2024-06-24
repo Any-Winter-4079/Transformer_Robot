@@ -1,0 +1,26 @@
+{
+    "input_images/arrow_left.png": {
+        "time": 9.268661975860596,
+        "prompt_tokens": 520,
+        "completion_tokens": 100,
+        "message": "Based on the image provided by your frontal camera, it appears that the blue lane you are tasked with following is veering off to the left from your current position. The blue lane takes up more of the left side of the image frame compared to the right side.\n\nTo stay centered on the blue lane, your next move should be:\nDirection: Left\nSpeed: Around 150-200 (medium speed)\n\nRationale: By turning left, you will adjust your"
+    },
+    "input_images/left_turn.png": {
+        "time": 11.038861274719238,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image from the frontal camera, my next move to stay centered on the blue lane while advancing should be:\n\nDirection: Slight right turn\nSpeed: Around 200 (roughly 80% of max speed)\n\nThe image shows more of the blue lane visible on the left side compared to the right. This indicates I am currently positioned slightly left of center on the lane. To correct this and re-center myself, a gentle right turn is needed.\n\nSince a"
+    },
+    "input_images/right_turn.png": {
+        "time": 12.301410913467407,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image provided by your frontal camera, the blue lane appears to curve sharply to the right just ahead of your current position.\n\nTo stay centered on the blue lane as you advance, your next move should be:\nDirection: Turn right to follow the curving path of the blue lane\nSpeed: Reduce speed significantly, perhaps to around 100-150 range (out of 255 max)\n\nThe sharp right curve means you'll need to make a substantial"
+    },
+    "input_images/straight_ahead.png": {
+        "time": 10.223550796508789,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the provided frontal camera image, my next move should be:\n\nDirection: Slight right turn\nSpeed: Around 200 (on the 0-255 scale)\n\nReasoning:\nThe blue lane appears to be veering slightly to the right from my current position and orientation. The blue color is more visible on the right side of the image, especially closer to the bottom which represents the area nearest to me.\n\nTo stay centered on the blue lane as I"
+    }
+}
