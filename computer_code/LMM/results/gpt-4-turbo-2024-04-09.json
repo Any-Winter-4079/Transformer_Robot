@@ -1,0 +1,26 @@
+{
+    "input_images/arrow_left.png": {
+        "time": 6.312248706817627,
+        "prompt_tokens": 574,
+        "completion_tokens": 100,
+        "message": "Based on the image of the blue lane on the brown floor with the arrow indicating the current direction, your next move should be a slight adjustment to the right. This is necessary because the blue lane curves to the right and you need to adjust your direction to stay centered on it.\n\n**Direction:** Turn slightly right.\n**Speed:** You can maintain a moderate speed, say around 128, which would give you enough momentum to follow the curve efficiently but still allow you ample response time to adjust as the"
+    },
+    "input_images/left_turn.png": {
+        "time": 7.997568130493164,
+        "prompt_tokens": 404,
+        "completion_tokens": 100,
+        "message": "Based on the image you provided, where the blue lane curves to the right, the recommended action for maintaining a centered position on the lane would be to adjust your direction slightly to the right. Here's the detailed reasoning for the adjustment:\n\n1. **Direction**: Adjust your trajectory to the right to follow the curve of the blue lane. It appears that the lane is forming a gentle curve, so a drastic turn is not necessary.\n\n2. **Speed**: Since the curve is not sharp and visibility from"
+    },
+    "input_images/right_turn.png": {
+        "time": 7.197594165802002,
+        "prompt_tokens": 404,
+        "completion_tokens": 100,
+        "message": "Based on the image provided, the blue lane you are following appears to be curving to the right. To maintain a centered position within the lane as you advance, you should adjust your direction slightly to the right.\n\nSince the curve is moderate and not a sharp turn, you can maintain a reasonably steady speed while making this adjustment. Hence, I would recommend setting your speed to a medium value to ensure stability and provide ample reaction time if further adjustments are necessary as the lane continues to curve.\n\n**Recommended"
+    },
+    "input_images/straight_ahead.png": {
+        "time": 9.166416883468628,
+        "prompt_tokens": 404,
+        "completion_tokens": 100,
+        "message": "Based on the image provided, the blue lane appears well-centered and straight in front of you, filling the frame evenly from left to right with consistent margins. This suggests that you are currently well-aligned with the lane. \n\nTo maintain your position centered on the blue lane, your next move should be to continue moving straight ahead. Since there are no visible curves or deviations in the lane within the visible range of the camera, there is no immediate need to adjust your direction either left or right.\n\nConsidering speed"
+    }
+}
