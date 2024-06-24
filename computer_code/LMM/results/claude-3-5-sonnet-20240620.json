@@ -1,0 +1,26 @@
+{
+    "input_images/arrow_left.png": {
+        "time": 8.497083902359009,
+        "prompt_tokens": 520,
+        "completion_tokens": 100,
+        "message": "Based on the image from your frontal camera, here's what I observe and recommend:\n\n1. The blue lane is visible, but it's not centered in the image. It appears to be veering off to the right side of the frame.\n\n2. There's a red arrow pointing to the left, which seems to be an indicator or marker, but our primary goal is to follow the blue lane.\n\nGiven this information, here's what I recommend:\n\nDirection: Right\n"
+    },
+    "input_images/left_turn.png": {
+        "time": 4.520057201385498,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image, I can see a blue lane on a brown background. The blue lane appears to curve sharply to the right, forming an almost 90-degree angle.\n\nGiven this situation, my recommendation would be:\n\nDirection: Right\nSpeed: 100 (out of 255)\n\nReasoning:\n1. Direction: The blue lane is clearly turning to the right. To stay centered on the lane, you need to turn right to follow its curve.\n\n"
+    },
+    "input_images/right_turn.png": {
+        "time": 4.947968006134033,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image from your frontal camera, I can see a portion of a blue lane making a sharp right turn against a brown background. The blue lane enters the frame from the bottom left corner and curves sharply to the right, exiting the frame on the right side.\n\nGiven this situation, your next move should be:\n\nDirection: Right\nSpeed: 100 (moderate speed)\n\nReasoning:\n1. The blue lane is clearly turning to the right, so"
+    },
+    "input_images/straight_ahead.png": {
+        "time": 4.652676105499268,
+        "prompt_tokens": 260,
+        "completion_tokens": 100,
+        "message": "Based on the image from your frontal camera, I can see a clear blue lane running vertically through the center of the frame, surrounded by a brown surface on both sides. The blue lane appears to be straight and of consistent width.\n\nGiven this view, your next move should be:\n\nDirection: Straight ahead\nSpeed: 200 (moderately fast, but not maximum speed)\n\nReasoning:\n1. Direction: The blue lane is perfectly centered in the image,"
+    }
+}
