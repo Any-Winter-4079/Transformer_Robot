@@ -44,21 +44,25 @@ import matplotlib.colors as mcolors
 # Remember to create a virtual environment, install the packages, and activate it.
 # In my case: source ./tensorflow-metal-test/bin/activate (from v2 folder)
 
-results_matrix = np.array([[589, 184], [193, 353]])
+results_matrix = np.array([[528, 254], [227, 310]])
 
-cases = ["Correct", "Incorrect"]
+cot_labels = ["Correct in\n8-shot CoT", "Incorrect in\n8-shot CoT"]
+declarative_labels = ["Correct in\n8-shot (4 pos & 4 neg)\n+ 8 principles Declarative\n(own prompt, adapted code)",
+                      "Incorrect in\n8-shot (4 pos & 4 neg)\n+ 8 principles Declarative\n(own prompt, adapted code)"]
+
 cmap = mcolors.LinearSegmentedColormap.from_list("custom", ["#FFB347", "#387761"], N=256)
 
-plt.figure(figsize=(8, 6))
+plt.figure(figsize=(10, 8))
 sns.heatmap(
-            results_matrix,
-            annot=True,
-            fmt="d",
-            cmap=cmap,
-            xticklabels=cases,
-            yticklabels=cases)
+    results_matrix,
+    annot=True,
+    fmt="d",
+    cmap=cmap,
+    xticklabels=declarative_labels,
+    yticklabels=cot_labels)
 
-plt.title('Mixtral-8x7b-instruct-Q5_0: CoT and Declarative overlap')
-plt.xlabel('CoT seed 1337')
-plt.ylabel('CoT seed 966')
+plt.title('Mixtral-8x7b-instruct-Q5_0: CoT & Declarative overlap', fontsize=14)
+
+plt.tight_layout()
+
 plt.show()
