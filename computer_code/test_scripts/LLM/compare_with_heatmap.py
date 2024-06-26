@@ -44,18 +44,18 @@ import matplotlib.colors as mcolors
 # Remember to create a virtual environment, install the packages, and activate it.
 # In my case: source ./tensorflow-metal-test/bin/activate (from v2 folder)
 
-results_matrix = np.array([[586, 187], [204, 342]])
+results_matrix = np.array([[528, 254], [227, 310]])
 
-# y_labels = ["Correct in\n8-shot CoT", "Incorrect in\n8-shot CoT"]
+y_labels = ["Correct in\n8-shot CoT", "Incorrect in\n8-shot CoT"]
 # y_labels = ["Correct in 8-shot \nCoT (seed: 966)", "Incorrect in 8-shot \nCoT (seed: 966)"]
 # y_labels = ["Correct in 8-shot \nCoT (seed: 966)", "Incorrect in 8-shot \nCoT (seed: 966)"]
-y_labels = ["Correct in 8-shot \nCoT (seed: 966)", "Incorrect in 8-shot \nCoT (seed: 966)"]
+# y_labels = ["Correct in 8-shot \nCoT (seed: 1337)", "Incorrect in 8-shot \nCoT (seed: 1337)"]
 
-# x_labels = ["Correct in\n8-shot (4 pos & 4 neg)\n+ 8 principles Declarative\n(own prompt, adapted code)",
-#             "Incorrect in\n8-shot (4 pos & 4 neg)\n+ 8 principles Declarative\n(own prompt, adapted code)"]
+x_labels = ["Correct in\n8-shot (4 pos & 4 neg)\n+ 8 principles Declarative\n(own prompt, adapted code)",
+            "Incorrect in\n8-shot (4 pos & 4 neg)\n+ 8 principles Declarative\n(own prompt, adapted code)"]
 # x_labels = ["Correct in\n8-shot CoT (seed: 1337)", "Incorrect in\n8-shot CoT (seed: 1337)"]
 # x_labels = ["Correct in\n8-shot CoT (seed: 7625)", "Incorrect in\n8-shot CoT (seed: 7625)"]
-x_labels = ["Correct in\n8-shot CoT (seed: 7625)", "Incorrect in\n8-shot CoT (seed: 7625)"]
+# x_labels = ["Correct in\n8-shot CoT (seed: 7625)", "Incorrect in\n8-shot CoT (seed: 7625)"]
 
 cmap = mcolors.LinearSegmentedColormap.from_list("custom", ["#FFB347", "#387761"], N=256)
 
@@ -70,8 +70,8 @@ sns.heatmap(
     annot_kws={'size': 16}  # Increase font size of the numbers
 )
 
-plt.title('Mixtral-8x7b-instruct-Q5_0: CoT overlap', fontsize=14)
-# plt.title('Mixtral-8x7b-instruct-Q5_0: CoT & Declarative overlap', fontsize=14)
+# plt.title('Mixtral-8x7b-instruct-Q5_0: CoT overlap', fontsize=14)
+plt.title('Mixtral-8x7b-instruct-Q5_0: CoT & Declarative overlap', fontsize=14)
 
 plt.xticks(fontsize=12)
 plt.yticks(fontsize=12)
