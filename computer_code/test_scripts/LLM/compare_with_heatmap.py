@@ -44,9 +44,9 @@ import matplotlib.colors as mcolors
 # Remember to create a virtual environment, install the packages, and activate it.
 # In my case: source ./tensorflow-metal-test/bin/activate (from v2 folder)
 
-results_matrix = np.array([[528, 254], [227, 310]])
+results_matrix = np.array([[589, 184], [193, 353]])
 
-methods = ["Correct", "Incorrect"]
+cases = ["Correct", "Incorrect"]
 cmap = mcolors.LinearSegmentedColormap.from_list("custom", ["#FFB347", "#387761"], N=256)
 
 plt.figure(figsize=(8, 6))
@@ -55,10 +55,10 @@ sns.heatmap(
             annot=True,
             fmt="d",
             cmap=cmap,
-            xticklabels=methods,
-            yticklabels=methods)
+            xticklabels=cases,
+            yticklabels=cases)
 
 plt.title('Mixtral-8x7b-instruct-Q5_0: CoT and Declarative overlap')
-plt.xlabel('Declarative')
-plt.ylabel('CoT')
+plt.xlabel('CoT seed 1337')
+plt.ylabel('CoT seed 966')
 plt.show()
