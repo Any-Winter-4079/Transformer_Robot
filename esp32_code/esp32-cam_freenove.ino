@@ -120,14 +120,14 @@ volatile bool soundDetected = false;
 
 // WiFi credentials and IP configurations
 const char* ssid1 = "MOVISTAR_BC03";
-const char* password1 = "zN8YiEUDCSW7Bxoe72sZ";
+const char* password1 = "****";
 IPAddress staticIP1(192, 168, 1, 182); // Requested address
 IPAddress gateway1(192, 168, 1, 1); // Gateway for Home WiFi
 IPAddress subnet1(255, 255, 255, 0);
 const char* websocket_server_host1 = "192.168.1.174"; // Computer IP
 
 const char* ssid2 = "iPhone (2)";
-const char* password2 = "hBeyhdnskekN589!,)/&:728&::";
+const char* password2 = "****";
 IPAddress staticIP2(172, 20, 10, 12); // Requested address
 IPAddress gateway2(172, 20, 10, 1); // Gateway for iPhone Hotspot
 IPAddress subnet2(255, 255, 255, 0);
